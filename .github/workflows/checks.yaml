@@ -1,8 +1,11 @@
 name: Checks # Workflow name
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  push:
+    branches:
+      - main
+#  pull_request:
+#    types: [opened, synchronize]
 
 jobs:
   checks:
