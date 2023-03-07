@@ -1,8 +1,13 @@
 .idea
+.github
+.git
+.gitignore
 
-data
 deploy
+data
 
 **/node_modules
 **/dist
 **/build
+
+Dockerfile

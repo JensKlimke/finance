@@ -1,0 +1,32 @@
+version: "3"
+services:
+
+  finance:
+    image: finance-stack
+    container_name: finance-stack
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    expose:
+      - 6379
+    volumes:
+      - redis-storage:/data
+    command:
+      - "redis-server"
+      - "--save"
+      - "60"
+      - "1"
+      - "--loglevel"
+      - "warning"
+
+volumes:
+  redis-storage:
