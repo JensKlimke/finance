@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "npx lerna run build",
-    "start": "npx lerna run start"
+    "start": "npx lerna run start",
+    "test": "npx lerna run test"
   },
   "workspaces": [
     "packages/*"
