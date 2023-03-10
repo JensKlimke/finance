@@ -2,12 +2,17 @@
 .github
 .git
 .gitignore
+.DS_Store
 
 deploy
 data
+.backup
 
 **/node_modules
 **/dist
 **/build
 
 Dockerfile
+
+LICENSE
+README.md
