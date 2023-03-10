@@ -4,6 +4,8 @@
   "scripts": {
     "build": "npx lerna run build",
     "start": "npx lerna run start",
+    "start:finapp": "npx lerna run start --scope finapp",
+    "start:api": "npx lerna run start --scope api",
     "test": "npx lerna run test"
   },
   "workspaces": [
