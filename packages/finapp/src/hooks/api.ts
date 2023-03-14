@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 import {useAuth} from "./auth";
 import {API_URL} from "../config/env";
 
@@ -56,22 +56,23 @@ export function useApi<Type>(path : string) {
   const [data, setData] = useState<Type[]>();
   const [loading, setLoading] = useState<boolean>(false);
   const {session} = useAuth();
+  const url = useMemo(() => path.startsWith('http') ? path : `${API_URL}/v1/${path}`, [path]);
   // callbacks
   const reload = useCallback((parameters?: { [key: string]: any }) => {
     // set loading
     setLoading(true);
     // get data
-    _fetch<Type, Type[]>(`${API_URL}/${path}`, session?.token || undefined, parameters)
+    _fetch<Type, Type[]>(url, session?.token || undefined, parameters)
       .then(data => setData(data))
       .catch(console.error)
       .then(() => setLoading(false));
-  }, [path, session?.token]);
+  }, [url, session?.token]);
   const save = useCallback((id : string | undefined, object : Type | Type[], parameters?: { [key: string]: any }) => {
-    return _fetch(`${API_URL}/${path}`, session?.token, parameters, id, object);
-  }, [path, session?.token]);
+    return _fetch(url, session?.token, parameters, id, object);
+  }, [url, session?.token]);
   const erase = useCallback((id : string | null[] | undefined, parameters?: { [key: string]: any }) => {
-    return _fetch(`${API_URL}/${path}`, session?.token, parameters, id, null);
-  }, [path, session?.token]);
+    return _fetch(url, session?.token, parameters, id, null);
+  }, [url, session?.token]);
   // return data
   return {
     data,
@@ -82,9 +83,9 @@ export function useApi<Type>(path : string) {
   };
 }
 
-export function useApiData<Type>(path?: string, parameters?: { [key: string]: any }) {
+export function useApiData<Type>(path: string, parameters?: { [key: string]: any }) {
   // get data
-  const data = useApi<Type>(path || '');
+  const data = useApi<Type>(path);
   // load data
   useEffect(() => {
     const reload = data.reload;

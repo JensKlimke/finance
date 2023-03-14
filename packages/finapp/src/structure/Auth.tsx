@@ -6,11 +6,12 @@ import App from "./App";
 import {Button, Card, Col, Row} from "react-bootstrap";
 import {BsGithub} from "react-icons/bs";
 import {useApiData} from "../hooks/api";
+import {API_URL} from "../config/env";
 
 export default function Auth({children}: { children: React.ReactNode }) {
   // hooks
   const {pending, session, login} = useAuth();
-  const {data} = useApiData<string>('whois');
+  const {data} = useApiData<string>(`${API_URL}/whois`);
   // don't render if not logged in
   if (pending && !session)
     return <LoadingScreen>Loading session&hellip;</LoadingScreen>

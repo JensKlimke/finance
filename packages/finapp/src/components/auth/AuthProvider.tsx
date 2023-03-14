@@ -13,7 +13,7 @@ const sessionPromise = () =>
     // check session
     if (!token || typeof token !== 'string') return resolve(undefined);
     // call API
-    fetch(`${API_URL}/user`, {
+    fetch(`${API_URL}/v1/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export default function AuthProvider({ children } : {children: React.ReactNode})
   // generate login url
   const login = useCallback(() => {
     // create url
-    const url = new URL(`${API_URL}/auth/login`);
+    const url = new URL(`${API_URL}/v1/auth/login`);
     url.searchParams.set('redirect', window.location.href);
     // forward
     window.location.href = url.toString();

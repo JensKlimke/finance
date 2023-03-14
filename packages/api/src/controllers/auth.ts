@@ -107,7 +107,7 @@ const code = (req : Request, res : Response) => {
     })
     .catch(e => {
       console.error(e);
-      res.send(HttpStatusCode.INTERNAL_SERVER_ERROR);
+      res.sendStatus(HttpStatusCode.INTERNAL_SERVER_ERROR);
     });
 }
 

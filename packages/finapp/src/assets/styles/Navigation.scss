@@ -7,11 +7,14 @@ ul.Nav, ul.Nav ul {
 }
 
 ul.Nav {
+  font-size: $font-size-lg;
   overflow: hidden;
 }
 
 ul.Nav h1 {
+  font-size: $font-size-base;
   text-transform: uppercase;
+  color: $text-muted;
   padding: 0 0.5em;
   margin: 0 0 1em;
   line-height: 1em;
