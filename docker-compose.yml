@@ -12,19 +12,9 @@ services:
       - redis-storage:/data
     command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
 
-  master:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-      args:
-        API_URL: ${API_HOST}
-    image: finance/master:1
-    container_name: master
-    restart: "no"
-
   api:
     container_name: api
-    image: finance/master:1
+    image: jensklimke/finance:dev
     command: ["npm", "run", "start:api"]
     environment:
       REDIS_HOST: redis
@@ -38,12 +28,11 @@ services:
       finapp-net:
       jk-net:
     depends_on:
-      - master
       - redis
 
   finapp:
     container_name: finapp
-    image: finance/master:1
+    image: jensklimke/finance:dev
     command: [ "npm", "run", "start:finapp" ]
     ports:
       - "${APP_PORT}:${APP_PORT}"
@@ -54,7 +43,6 @@ services:
       finapp-net:
       jk-net:
     depends_on:
-      - master
       - api
 
 volumes:

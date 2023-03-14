@@ -15,6 +15,3 @@ COPY . .
 # install and build
 RUN npm i
 RUN npm run build
-
-# dummy command to keep up
-CMD ["tail", "-f", "/dev/null"]
