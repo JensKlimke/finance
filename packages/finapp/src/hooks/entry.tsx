@@ -161,10 +161,6 @@ export function GenericEntryProvider<Type extends EntryWithId> (
         params[referenceKey] = reference;
       // save object
       saveApi(entry?._id, obj, params)
-        .then(j => {
-          console.log(j);
-          return j;
-        })
         .then((j : any) => saveCheck(j))
         .then(() => resolve())
         .catch(e => reject(e));

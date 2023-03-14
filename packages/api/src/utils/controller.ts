@@ -162,7 +162,6 @@ export class RedisController<Type> {
     const cl = this.client.multi();
     // patch
     const ids = await Promise.all(entries.map(e => this._patchEntry(uid, e._id, body, cl)));
-    console.log(ids)
     // execute
     await cl.exec();
     // return IDs
