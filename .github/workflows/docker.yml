@@ -26,4 +26,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args:
+            - API_URL=https://api.finance.dev.jens-klimke.de
+            - HEAD_REF=${{ github.head_ref }}
+            - COMMIT_ID=${{ github.sha }}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/finance:dev
