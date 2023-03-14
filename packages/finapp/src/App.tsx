@@ -20,8 +20,8 @@ function App() {
         <p>
           {key ? `API Key: ${key}` : `No connection to ${API_URL}`}
         </p>
-        <p>{COMMIT_ID}&nbsp;{HEAD_REF}</p>
       </header>
+      <p>{COMMIT_ID}&nbsp;{HEAD_REF}</p>
     </div>
   );
 }
