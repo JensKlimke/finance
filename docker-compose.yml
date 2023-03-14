@@ -1,32 +1,67 @@
 version: "3"
 services:
 
-  finance:
-    image: finance-stack
-    container_name: finance-stack
-    ports:
-      - "3000:3000"
-      - "8000:8000"
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-    depends_on:
-      - redis
-
   redis:
     image: redis:latest
     container_name: redis
+    networks:
+      finapp-net:
     expose:
       - 6379
     volumes:
       - redis-storage:/data
-    command:
-      - "redis-server"
-      - "--save"
-      - "60"
-      - "1"
-      - "--loglevel"
-      - "warning"
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+
+  master:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        API_URL: ${API_HOST}
+    image: finance/master:1
+    container_name: master
+    restart: "no"
+
+  api:
+    container_name: api
+    image: finance/master:1
+    command: ["npm", "run", "start:api"]
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      PORT: ${API_PORT}
+      VIRTUAL_HOST: ${API_HOST}
+      LETSENCRYPT_HOST: ${API_HOST}
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    networks:
+      finapp-net:
+      jk-net:
+    depends_on:
+      - master
+      - redis
+
+  finapp:
+    container_name: finapp
+    image: finance/master:1
+    command: [ "npm", "run", "start:finapp" ]
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      VIRTUAL_HOST: ${APP_HOST}
+      LETSENCRYPT_HOST: ${APP_HOST}
+    networks:
+      finapp-net:
+      jk-net:
+    depends_on:
+      - master
+      - api
 
 volumes:
   redis-storage:
+    external: true
+
+networks:
+  finapp-net:
+  jk-net:
+    external: true
