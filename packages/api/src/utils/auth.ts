@@ -2,6 +2,7 @@ import ApiError from "./ApiError";
 import jwt from "jsonwebtoken";
 import {Request} from "express";
 import {GITHUB_USER_URL} from "../config/env";
+import fetch from 'node-fetch';
 
 export const loadUserData = (accessToken: string) => new Promise<any>((resolve, reject) => {
   fetch(GITHUB_USER_URL, {
