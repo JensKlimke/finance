@@ -7,7 +7,7 @@ dotenv.config();
 
 // port, host and paths
 export const PORT = process.env.API_PORT || 3003;
-export const HOST_URL = process.env.HOST_URL || `http://localhost:${PORT}`;
+export const HOST_URL = process.env.API_URL || `http://localhost:${PORT}`;
 export const AUTH_PATH = process.env.AUTH_PATH || '/v1/auth/auth'
 
 
