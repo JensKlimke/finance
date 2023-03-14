@@ -1,4 +1,4 @@
-FROM node:17.3.0-alpine
+FROM node:19-alpine
 
 # install packages
 RUN npm install -g serve nodemon
