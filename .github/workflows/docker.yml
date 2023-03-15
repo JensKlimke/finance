@@ -1,0 +1,49 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Configuration for main branch
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          echo "HOST=jens-klimke.de" >> $GITHUB_ENV
+          echo "TAG=latest" >> $GITHUB_ENV
+          echo "BRANCH=main" >> $GITHUB_ENV
+      - name: Configuration for dev branch
+        if: ${{ github.ref == 'refs/heads/dev' }}
+        run: |
+          echo "HOST=dev.jens-klimke.de" >> $GITHUB_ENV
+          echo "TAG=dev" >> $GITHUB_ENV
+          echo "BRANCH=dev" >> $GITHUB_ENV
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          build-args: |
+            COMMIT_ID=${{ github.sha }}
+            RUN_ID=${{ github.run_id }}
+            API_URL=https://api.finance.${{ env.HOST }}
+            HEAD_REF=${{ env.BRANCH }}
+            SESSION_STORAGE_KEY=${{ secrets.SESSION_STORAGE_KEY }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/finance:${{ env.TAG }}
