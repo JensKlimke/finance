@@ -1,4 +1,5 @@
 import {Col, Container, Row} from "react-bootstrap";
+import {API_URL, BRANCH, COMMIT_ID, RUN_ID} from "../../config/env";
 
 export default function AboutPage() {
   return (
@@ -14,6 +15,27 @@ export default function AboutPage() {
             <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
             <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
             <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+          </section>
+          <h2 className='display-2'>Version</h2>
+          <section>
+            <table>
+              <tr>
+                <td>API URL</td>
+                <td>{API_URL}</td>
+              </tr>
+              <tr>
+                <td>Branch</td>
+                <td>{BRANCH}</td>
+              </tr>
+              <tr>
+                <td>Commit</td>
+                <td>{COMMIT_ID}</td>
+              </tr>
+              <tr>
+                <td>Run ID</td>
+                <td>{RUN_ID}</td>
+              </tr>
+            </table>
           </section>
         </Col>
       </Row>
