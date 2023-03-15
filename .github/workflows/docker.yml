@@ -42,6 +42,8 @@ jobs:
           push: true
           build-args: |
             COMMIT_ID=${{ github.sha }}
+            RUN_ID=${{ github.run_id }}
             API_URL=https://api.finance.${{ env.HOST }}
             HEAD_REF=${{ env.BRANCH }}
+            SESSION_STORAGE_KEY=${{ secrets.SESSION_STORAGE_KEY }}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/finance:${{ env.TAG }}
