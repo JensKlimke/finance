@@ -15,6 +15,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Configuration for main branch
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: |
+          echo "HOST=jens-klimke.de" >> $GITHUB_ENV
+      - name: Configuration for dev branch
+        if: ${{ github.ref == 'refs/heads/dev' }}
+        run: |
+          echo "HOST=dev.jens-klimke.de" >> $GITHUB_ENV
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v6
@@ -35,6 +43,6 @@ jobs:
           push: true
           build-args: |
             COMMIT_ID=${{ github.sha }}
-            API_URL=https://api.finance.jens-klimke.de
+            API_URL=https://api.finance.${{ env.HOST }}
             HEAD_REF=dev
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/finance:${{ steps.branch-name.outputs.current_branch }}
