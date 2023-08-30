@@ -40,7 +40,7 @@ export const auth = (requiredRights: string[]) => async (req: Request, res: Resp
     }
     // check rights
     const id = req.auth.user;
-    const role = (id !== null && id === SUPER_ADMIN_ID) ? 'admin' : 'user';
+    const role = (id !== null && id.toString() === SUPER_ADMIN_ID) ? 'admin' : 'user';
     const userRights = roleRights.get(role);
     // every right must be fulfilled
     const hasRequiredRights = requiredRights.every((requiredRight) => userRights.includes(requiredRight));
