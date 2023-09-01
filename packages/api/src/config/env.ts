@@ -40,3 +40,6 @@ export const DATABASE_FINANCE = Number.parseInt(process.env.DATABASE_INDEX_FINAC
 // table keys
 export const AUTH_DB_KEY = process.env.AUTH_DB_KEY || 'auth';
 export const USER_DB_KEY = process.env.USER_DB_KEY || 'users';
+
+
+export const API_ENV = process.env.API_ENV || 'prod';

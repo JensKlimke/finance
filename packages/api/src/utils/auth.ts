@@ -11,6 +11,13 @@ export const loadUserData = (accessToken: string) => new Promise<any>((resolve, 
       if (t.status !== 200) throw t;
       return t.json();
     })
+    .then(user => ({
+      id: user.id,
+      email: user.email,
+      avatar: user.avatar_url,
+      name: user.name,
+      role: 'user'
+    }))
     .then(user => resolve(user))
     .catch(err => {
       reject(new ApiError(err.status, err.statusText));
@@ -26,5 +33,9 @@ export const checkToken = (token : string, secret : string) : any | undefined =>
 }
 
 export const getUserId = (req : Request) => {
-  return req.auth.user || undefined;
+  return req.auth.user.id || undefined;
+}
+
+export const getUserRole = (req : Request) => {
+  return req.auth.user.role || 'user';
 }

@@ -47,6 +47,15 @@ export default function AuthProvider({ children } : {children: React.ReactNode})
     // forward
     window.location.href = url.toString();
   }, []);
+  // generate login url
+  const createFakeSession = useCallback((type : string) => {
+    // create url
+    const url = new URL(`${API_URL}/v1/auth/fake`);
+    url.searchParams.set('type', type);
+    url.searchParams.set('redirect', window.location.href);
+    // forward
+    window.location.href = url.toString();
+  }, []);
   // logout callback
   const logout = useCallback(() => {
     // delete session
@@ -82,7 +91,8 @@ export default function AuthProvider({ children } : {children: React.ReactNode})
     pending,
     login,
     logout,
-    renew
+    renew,
+    createFakeSession
   };
   // render
   return (

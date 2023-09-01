@@ -5,3 +5,4 @@ export const API_URL = process.env.REACT_APP_API_URL || '';
 export const COMMIT_ID = process.env.REACT_APP_COMMIT_ID || 'n/a';
 export const RUN_ID = process.env.REACT_APP_RUN_ID || 'n/a';
 export const BRANCH = process.env.REACT_APP_HEAD_REF || '';
+export const ENV = process.env.REACT_APP_ENV || 'prod';

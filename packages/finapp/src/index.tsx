@@ -11,6 +11,7 @@ import StocksPage from "./pages/stocks/Stocks.page";
 import AssetsPage from "./pages/assets/Assets.page";
 import NotFound from "./pages/NotFound";
 import UsersPage from "./pages/users/Users.page";
+import DatabasePage from "./pages/database/Database.page";
 import AboutPage from "./pages/about/About.page";
 import {withAuth} from "./structure/Auth";
 
@@ -28,6 +29,7 @@ root.render(
         <Route path="stocks" element={withAuth(<StocksPage />)} />
         <Route path="assets" element={withAuth(<AssetsPage />)} />
         <Route path="users" element={withAuth(<UsersPage />)} />
+        <Route path="database" element={withAuth(<DatabasePage />)} />
         <Route path="about" element={withAuth(<AboutPage />)} />
         <Route path='*' element={<NotFound />} />
       </Routes>

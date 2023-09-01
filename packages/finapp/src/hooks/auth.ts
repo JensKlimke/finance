@@ -26,6 +26,7 @@ export type RegisterValuesType = {
 export type LoginCallback = () => void;
 export type LogoutCallback = () => void;
 export type RenewCallback = () => void;
+export type FakeSessionCallback = (type : string) => void;
 
 // the context type definition
 export type AuthContextType = {
@@ -33,6 +34,7 @@ export type AuthContextType = {
   pending : boolean
   login : LoginCallback
   logout : LogoutCallback
+  createFakeSession : FakeSessionCallback
   renew : RenewCallback
 }
 
@@ -41,7 +43,8 @@ export const Auth = createContext<AuthContextType>({
   pending: true,
   login: () => { throw new Error("Not implemented"); },
   logout: () => { throw new Error("Not implemented"); },
-  renew: () => { throw new Error("Not implemented"); }
+  renew: () => { throw new Error("Not implemented"); },
+  createFakeSession : () => { throw new Error("Not implemented"); }
 });
 
 // the hook for the context

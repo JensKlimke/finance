@@ -13,8 +13,9 @@ import {
   GITHUB_CLIENT_ID,
   GITHUB_CLIENT_SECRET, GITHUB_TOKEN_URL,
   HOST_URL, SESSION_SECRET,
-  STATE_SECRET, USER_DB_KEY
+  STATE_SECRET, SUPER_ADMIN_ID, USER_DB_KEY
 } from "../config/env";
+import {UserData} from "../types/session";
 
 
 /**
@@ -48,6 +49,46 @@ const login = (req : Request, res : Response) => {
   url.searchParams.append('state', state);
   // redirect
   res.redirect(url.toString());
+}
+
+
+const fakeSession = async (req: Request, res: Response) => {
+  // get redirect url and type
+  const redirect = req?.query?.redirect || '';
+  const type = req?.query?.type || 'user';
+  // set user data
+  let user : UserData;
+  if (type === 'admin') {
+    user = {
+      id: '0',
+      name: 'Fake Admin',
+      email: 'admin@example.com',
+      role: 'admin'
+    }
+  } else {
+    user = {
+      id: '1',
+      name: 'Fake User',
+      email: 'user@example.com',
+      role: 'user'
+    }
+  }
+  await authClient.hSet(USER_DB_KEY, user.id, JSON.stringify(user));
+  // create data to store
+  const authData = {
+    accessToken: '',
+    user: user.id,
+  }
+  // save access token to database
+  const clientKey = v4();
+  const clientToken = jwt.sign(clientKey, SESSION_SECRET);
+  // save session
+  await authClient.hSet(AUTH_DB_KEY, clientKey, JSON.stringify(authData));
+  // create uri
+  const redirectUri = new URL(redirect.toString());
+  redirectUri.searchParams.set('token', clientToken);
+  // redirect to url
+  res.redirect(redirectUri.toString());
 }
 
 
@@ -89,6 +130,14 @@ const code = (req : Request, res : Response) => {
       }
       // update user data
       const user = await loadUserData(accessToken.access_token);
+      // set super admin
+      let role = 'user';
+      // get data to remain role
+      const oldUser = await authClient.hGet(USER_DB_KEY, user.id.toString());
+      if (oldUser)
+        try { role = JSON.parse(oldUser).role } catch (e) {}
+      // update role and save user
+      user.role = role;
       await authClient.hSet(USER_DB_KEY, user.id.toString(), JSON.stringify(user));
       // create data to store
       const authData = {
@@ -114,5 +163,6 @@ const code = (req : Request, res : Response) => {
 export const authController = {
   login,
   logout,
-  code
+  code,
+  fakeSession
 };

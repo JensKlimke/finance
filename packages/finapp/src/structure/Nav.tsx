@@ -4,7 +4,7 @@ import {
   BsArrowLeftRight,
   BsBank,
   BsBoxArrowLeft,
-  BsCash,
+  BsCash, BsDatabase,
   BsInfoCircle,
   BsPen,
   BsSpeedometer2
@@ -13,7 +13,7 @@ import {useAuth} from "../hooks/auth";
 
 export default function Nav() {
   // get callbacks
-  const {logout} = useAuth();
+  const {session, logout} = useAuth();
   // render
   return (
     <>
@@ -75,6 +75,20 @@ export default function Nav() {
       </ul>
       <hr/>
       <ul className='Nav'>
+        {
+          (session?.user.role === 'admin' || session?.user.role === 'super_admin') && (
+            <NavLink to='/database'>
+              <li>
+                <span className='icon'>
+                  <BsDatabase />
+                </span>
+                <span className='text'>
+                  Database
+                </span>
+              </li>
+            </NavLink>
+          )
+        }
         <NavLink to='/about'>
           <li>
             <span className='icon'>
