@@ -156,7 +156,8 @@ const code = (req : Request, res : Response) => {
     })
     .catch(e => {
       console.error(e);
-      res.sendStatus(HttpStatusCode.INTERNAL_SERVER_ERROR);
+      res.status(HttpStatusCode.INTERNAL_SERVER_ERROR);
+      res.redirect(redirectUri.toString());
     });
 }
 
