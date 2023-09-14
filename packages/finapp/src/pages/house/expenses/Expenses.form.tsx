@@ -4,10 +4,9 @@ import {Button, ButtonGroup, Col, Form, Row} from "react-bootstrap";
 import AmountInput from "../../../components/forms/AmountInput";
 import {UpdateCallbackType} from "../../../hooks/entry";
 import {categoryIcons, invoiceIcons, payerIcons} from "./Expenses.table";
-import Calendar from "react-calendar";
-import moment from "moment/moment";
 import FilterInput from "../../../components/forms/FilterInput";
 import {useItems} from "../planning/Planning.context";
+import CalendarInput from "../../../components/forms/CalendarInput";
 
 export default function ExpensesForm ({entry, handleSubmit, update} : {
   entry : ExpenseType,
@@ -64,7 +63,10 @@ export default function ExpensesForm ({entry, handleSubmit, update} : {
       <Form.Group className="mb-3">
         <Form.Label>Date</Form.Label>
         <div className='text-center'>
-          <Calendar className='m-auto' onChange={(d : Date) => update('date', moment(d).format('YYYY-MM-DD'))} value={new Date(entry.date)} />
+          <CalendarInput
+            value={entry.date}
+            update={(value) => update('date', value)}
+          />
         </div>
       </Form.Group>
       <Row>

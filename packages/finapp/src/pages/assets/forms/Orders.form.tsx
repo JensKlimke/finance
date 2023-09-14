@@ -1,11 +1,10 @@
 import {OrderType} from "../hooks/Orders.context";
-import {FormEvent} from "react";
+import React, {FormEvent} from "react";
 import {Form} from "react-bootstrap";
 import AmountInput from "../../../components/forms/AmountInput";
 import {UpdateCallbackType} from "../../../hooks/entry";
-import moment from "moment";
-import Calendar from "react-calendar";
 import '../../../assets/styles/react-calendar.scss'
+import CalendarInput from "../../../components/forms/CalendarInput";
 
 // create options
 const options = [
@@ -53,7 +52,10 @@ export default function OrdersForm({entry, handleSubmit, update}: {
       <Form.Group className="mb-3">
         <Form.Label>Date</Form.Label>
         <div className='text-center'>
-          <Calendar className='m-auto' onChange={(d : Date) => update('date', moment(d).format('YYYY-MM-DD'))} value={new Date(entry.date)} />
+          <CalendarInput
+            value={entry.date}
+            update={(value) => update('date', value)}
+          />
         </div>
       </Form.Group>
     </Form>

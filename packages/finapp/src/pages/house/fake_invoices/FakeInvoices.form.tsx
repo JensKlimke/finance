@@ -2,10 +2,9 @@ import React, {FormEvent} from "react";
 import {Form} from "react-bootstrap";
 import AmountInput from "../../../components/forms/AmountInput";
 import {UpdateCallbackType} from "../../../hooks/entry";
-import Calendar from "react-calendar";
-import moment from "moment/moment";
 import FilterInput from "../../../components/forms/FilterInput";
 import {FakeInvoiceType, useFakeInvoices} from "./FakeInvoices.context";
+import CalendarInput from "../../../components/forms/CalendarInput";
 
 export default function FakeInvoicesForm ({entry, handleSubmit, update} : {
   entry : FakeInvoiceType,
@@ -43,7 +42,10 @@ export default function FakeInvoicesForm ({entry, handleSubmit, update} : {
       <Form.Group className="mb-3">
         <Form.Label>Date</Form.Label>
         <div className='text-center'>
-          <Calendar className='m-auto' onChange={(d : Date) => update('date', moment(d).format('YYYY-MM-DD'))} value={new Date(entry.date)} />
+          <CalendarInput
+            value={entry.date}
+            update={(value) => update('date', value)}
+          />
         </div>
       </Form.Group>
     </Form>

@@ -1,16 +1,17 @@
 import React, {createContext, useContext} from "react";
 import {defaultContext, EntryContextType, EntryWithId, GenericEntryProvider} from "../../../hooks/entry";
+import moment from "moment";
 
 export type DepositType = EntryWithId & {
   amount: number
-  date: Date
+  date: string
   payer: 'Cathrin' | 'Jens'
   comment: string,
 }
 
 export const defaultDeposit = () : DepositType => ({
   amount: 0,
-  date: new Date(),
+  date: moment().format('YYYY-MM-DD'),
   payer: 'Jens',
   comment: ''
 });

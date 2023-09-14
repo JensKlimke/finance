@@ -1,18 +1,19 @@
 import React, {createContext, useContext} from "react";
 import {defaultContext, EntryContextType, EntryWithId, GenericEntryProvider} from "../../../hooks/entry";
+import moment from "moment";
 
 export type FakeInvoiceType = EntryWithId & {
   description: string,
   creditor: string,
   amount: number,
-  date: Date,
+  date: string,
 }
 
 export const defaultFakeInvoice = () : FakeInvoiceType => ({
   description: '',
   creditor: '',
   amount: 0.0,
-  date: new Date(),
+  date: moment().format('YYYY-MM-DD'),
 });
 
 export const cleanFakeInvoiceCopy = (fakeInvoice: FakeInvoiceType) => ({

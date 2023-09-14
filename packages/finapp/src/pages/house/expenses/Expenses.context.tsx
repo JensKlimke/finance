@@ -1,5 +1,6 @@
 import React, {createContext, useContext} from "react";
 import {defaultContext, EntryContextType, EntryWithId, GenericEntryProvider} from "../../../hooks/entry";
+import moment from "moment";
 
 export type ExpenseType = EntryWithId & {
   description: string,
@@ -7,7 +8,7 @@ export type ExpenseType = EntryWithId & {
   creditor: string,
   amount: number,
   account: string,
-  date: Date,
+  date: string,
   invoice: 'yes' | 'no',
   payer: 'Cathrin' | 'Jens' | 'joint',
   item: string
@@ -19,7 +20,7 @@ export const defaultExpense = () : ExpenseType => ({
   creditor: '',
   amount: 0.0,
   account: '',
-  date: new Date(),
+  date: moment(new Date()).format('YYYY-MM-DD'),
   invoice: 'yes',
   payer: 'joint',
   item: ''
