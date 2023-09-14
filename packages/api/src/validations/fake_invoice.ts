@@ -4,9 +4,11 @@ import {validation} from "../utils/validation";
 
 // define contract body
 const body = Joi.object().keys({
+  description: Joi.string().required(),
+  creditor: Joi.string().required(),
   amount: Joi.number().required(),
-  description: Joi.string(),
+  date: Joi.date().required(),
 })
 
 // generate contract validation
-export const transferValidation = validation(body);
+export const fakeInvoiceValidation = validation(body);

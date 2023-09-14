@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import UsersPage from "./pages/users/Users.page";
 import DatabasePage from "./pages/database/Database.page";
 import AboutPage from "./pages/about/About.page";
+import HousePage from "./pages/house/HousePage";
 import {withAuth} from "./structure/Auth";
 
 const root = ReactDOM.createRoot(
@@ -28,6 +29,7 @@ root.render(
         <Route path="transfer" element={withAuth(<TransferPage />)} />
         <Route path="stocks" element={withAuth(<StocksPage />)} />
         <Route path="assets" element={withAuth(<AssetsPage />)} />
+        <Route path="house/*" element={withAuth(<HousePage />)} />
         <Route path="users" element={withAuth(<UsersPage />)} />
         <Route path="database" element={withAuth(<DatabasePage />)} />
         <Route path="about" element={withAuth(<AboutPage />)} />

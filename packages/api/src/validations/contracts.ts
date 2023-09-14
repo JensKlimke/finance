@@ -13,7 +13,7 @@ const monthArray = (value : any) => {
 
 
 // define contract body
-const ContractBody = Joi.object().keys({
+const body = Joi.object().keys({
   name: Joi.string().required(),
   creditor: Joi.string().required(),
   amount: Joi.number().positive().allow(0).required(),
@@ -22,4 +22,4 @@ const ContractBody = Joi.object().keys({
 })
 
 // generate contract validation
-export const contractValidation = validation(ContractBody);
+export const contractValidation = validation(body);

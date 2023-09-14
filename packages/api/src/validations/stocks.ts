@@ -2,7 +2,7 @@ import Joi from 'joi'
 import {validation} from "../utils/validation";
 
 // define stock body
-const Body = Joi.object().keys({
+const body = Joi.object().keys({
   symbol: Joi.string().required(),
   name: Joi.string().required(),
   quantity: Joi.number().required(),
@@ -11,4 +11,4 @@ const Body = Joi.object().keys({
 })
 
 // generate contract validation
-export const stocksValidation = validation(Body);
+export const stocksValidation = validation(body);

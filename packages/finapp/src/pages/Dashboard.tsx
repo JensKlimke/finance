@@ -23,6 +23,9 @@ export default function Dashboard () {
               <NavLink to='/assets'>
                 <h4 className='display-4'>Assets</h4>
               </NavLink>
+              <NavLink to='/house'>
+                <h4 className='display-4'>House</h4>
+              </NavLink>
               <NavLink to='/database'>
                 <h4 className='display-4'>Database</h4>
               </NavLink>

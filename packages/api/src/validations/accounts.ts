@@ -7,9 +7,9 @@ export const accountReference ={
 
 
 // define stock body
-const Body = Joi.object().keys({
+const body = Joi.object().keys({
   name: Joi.string().required(),
 })
 
 // generate contract validation
-export const accountsValidation = validation(Body);
+export const accountsValidation = validation(body);

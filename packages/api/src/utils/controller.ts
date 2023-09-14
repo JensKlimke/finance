@@ -24,7 +24,7 @@ export class RedisController<Type> {
 
   /**
    * @brief Set the reference controller.
-   * The reference controller allows access to the parent data of the items. The reference key defines the field name,
+   * The reference controller allows access to the parent data of the planning. The reference key defines the field name,
    * which is used to store the ID of the reference object.
    * @param referenceController The reference controller to be set.
    * @param referenceKey The key which is used to store the reference object ID. If not set the item key of the reference controller is used.
@@ -241,7 +241,7 @@ export class RedisController<Type> {
   }
 
   async getEntries (uid: string, query : QueryType) {
-    // get items
+    // get planning
     const items = await this.client.hGetAll(`${this.itemKey}:${uid}`);
     // check result, and return empty, when undefined, null, ...
     if (!items) return [];

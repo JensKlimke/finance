@@ -4,7 +4,9 @@ import {
   BsArrowLeftRight,
   BsBank,
   BsBoxArrowLeft,
-  BsCash, BsDatabase,
+  BsCash,
+  BsDatabase,
+  BsHouse,
   BsInfoCircle,
   BsPen,
   BsSpeedometer2
@@ -69,6 +71,16 @@ export default function Nav() {
             </span>
             <span className='text'>
               Assets
+            </span>
+          </li>
+        </NavLink>
+        <NavLink to='/house/expenses'>
+          <li>
+            <span className='icon'>
+              <BsHouse/>
+            </span>
+            <span className='text'>
+              House
             </span>
           </li>
         </NavLink>

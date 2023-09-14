@@ -38,8 +38,16 @@ ul.Nav a:hover {
   color: $nav-hover-color;
 }
 
-ul.Nav .active {
+ul.Nav .active ul {
   color: $nav-active-color;
+}
+
+ul.Nav ul {
+  display: none;
+}
+
+ul.Nav .active ul {
+  display: block;
 }
 
 ul.Nav li svg {
