@@ -3,10 +3,10 @@ import ApiError from "../utils/ApiError";
 import {roleRights} from "../config/roles";
 import HttpStatusCode from "../utils/HttpStatusCode";
 import httpStatusCode from "../utils/HttpStatusCode";
-import {checkToken, getUserId, getUserRole} from "../utils/auth";
+import {checkToken, getUserRole} from "../utils/auth";
 import {catchAsync} from "../utils/catchAsync";
 import {authClient} from "../config/redis";
-import {AUTH_DB_KEY, SESSION_SECRET, SUPER_ADMIN_ID, USER_DB_KEY} from "../config/env";
+import {AUTH_DB_KEY, SESSION_SECRET, USER_DB_KEY} from "../config/env";
 
 export const verifyToken = catchAsync(async (req, res, next) => {
   // create session object
@@ -39,13 +39,10 @@ export const verifyToken = catchAsync(async (req, res, next) => {
 export const auth = (requiredRights: string[]) => async (req: Request, res: Response, next: NextFunction) => {
   return new Promise<void>(async (resolve, reject) => {
     // check user
-    if (!req.auth.user) {
+    if (!req.auth.user)
       return reject(new ApiError(HttpStatusCode.UNAUTHORIZED, 'Please authenticate'));
-    }
     // check rights
-    const id = getUserId(req);
-    const role = (id !== null && id.toString() === SUPER_ADMIN_ID) ? 'super_admin' : getUserRole(req);
-    const userRights = roleRights.get(role);
+    const userRights = roleRights.get(getUserRole(req));
     // every right must be fulfilled
     const hasRequiredRights = requiredRights.every((requiredRight) => userRights.includes(requiredRight));
     // switch

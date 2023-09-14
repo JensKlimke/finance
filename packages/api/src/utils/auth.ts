@@ -1,7 +1,7 @@
 import ApiError from "./ApiError";
 import jwt from "jsonwebtoken";
 import {Request} from "express";
-import {GITHUB_USER_URL} from "../config/env";
+import {GITHUB_USER_URL, SUPER_ADMIN_ID} from "../config/env";
 
 export const loadUserData = (accessToken: string) => new Promise<any>((resolve, reject) => {
   fetch(GITHUB_USER_URL, {
@@ -18,6 +18,13 @@ export const loadUserData = (accessToken: string) => new Promise<any>((resolve, 
       name: user.name,
       role: 'user'
     }))
+    .then(user => {
+      // only allow super admin // TODO: remove or use database, when multi-users are possible
+      if (user.email !== SUPER_ADMIN_ID)
+        return reject('User not allowed');
+      // return user
+      return user;
+    })
     .then(user => resolve(user))
     .catch(err => {
       reject(new ApiError(err.status, err.statusText));

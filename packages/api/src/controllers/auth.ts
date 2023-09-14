@@ -1,8 +1,8 @@
 import {Request, Response} from "express";
 import jwt from "jsonwebtoken";
 import HttpStatusCode from "../utils/HttpStatusCode";
-import {v4} from "uuid";
 import httpStatusCode from "../utils/HttpStatusCode";
+import {v4} from "uuid";
 import {catchAsync} from "../utils/catchAsync";
 import {checkToken, loadUserData} from "../utils/auth";
 import {authClient} from "../config/redis";
@@ -11,9 +11,12 @@ import {
   AUTH_PATH,
   GITHUB_AUTHORIZE_URL,
   GITHUB_CLIENT_ID,
-  GITHUB_CLIENT_SECRET, GITHUB_TOKEN_URL,
-  HOST_URL, SESSION_SECRET,
-  STATE_SECRET, SUPER_ADMIN_ID, USER_DB_KEY
+  GITHUB_CLIENT_SECRET,
+  GITHUB_TOKEN_URL,
+  HOST_URL,
+  SESSION_SECRET,
+  STATE_SECRET, SUPER_ADMIN_ID,
+  USER_DB_KEY
 } from "../config/env";
 import {UserData} from "../types/session";
 
@@ -36,7 +39,7 @@ const logout = catchAsync(async (req: Request, res: Response) => {
  * @param req Express request
  * @param res Express response
  */
-const login = (req : Request, res : Response) => {
+const login = (req: Request, res: Response) => {
   // get redirect
   const origin = req?.query?.redirect || '';
   const redirect = HOST_URL + AUTH_PATH;
@@ -57,7 +60,7 @@ const fakeSession = async (req: Request, res: Response) => {
   const redirect = req?.query?.redirect || '';
   const type = req?.query?.type || 'user';
   // set user data
-  let user : UserData;
+  let user: UserData;
   if (type === 'admin') {
     user = {
       id: '0',
@@ -97,7 +100,7 @@ const fakeSession = async (req: Request, res: Response) => {
  * @param req Express request
  * @param res Express response
  */
-const code = (req : Request, res : Response) => {
+const code = (req: Request, res: Response) => {
   // get parameters
   const code = (req?.query?.code || '').toString();
   const state = req?.query?.state;
@@ -119,7 +122,7 @@ const code = (req : Request, res : Response) => {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
-    body: JSON.stringify({ client_id, client_secret, code })
+    body: JSON.stringify({client_id, client_secret, code})
   })
     .then(r => r.json())
     .then(async accessToken => {
@@ -130,14 +133,12 @@ const code = (req : Request, res : Response) => {
       }
       // update user data
       const user = await loadUserData(accessToken.access_token);
-      // set super admin
-      let role = 'user';
-      // get data to remain role
-      const oldUser = await authClient.hGet(USER_DB_KEY, user.id.toString());
-      if (oldUser)
-        try { role = JSON.parse(oldUser).role } catch (e) {}
-      // update role and save user
-      user.role = role;
+      // update role
+      user.role = (user.email !== null && user.email.toString() === SUPER_ADMIN_ID) ? 'super_admin' : user.role;
+      // log
+      if (user.role === 'super_admin')
+        console.log(`${user.name} logged in with super_admin role`);
+      // save user
       await authClient.hSet(USER_DB_KEY, user.id.toString(), JSON.stringify(user));
       // create data to store
       const authData = {
