@@ -14,7 +14,7 @@ export default function FilterInput({value, update, list} : FilterInputProps) {
       .filter(e => e.startsWith(value))
       .filter((v, i, a) => a.indexOf(v) === i)
       .sort((a, b) => a.localeCompare(b));
-  }, [list]);
+  }, [list, value]);
   return (
     <Form.Group
       onFocus={() => setShow(true)}
