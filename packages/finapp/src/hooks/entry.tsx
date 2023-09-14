@@ -15,7 +15,7 @@ export type DataColType = {
 export type DataComponentConfigType = {
   title ?: (row : any, data : any[], index : number, page ?: number, noOfPages ?: number) => ContentElement
   footer ?: (row : any, data : any[], index : number, page ?: number, noOfPages ?: number) => ContentElement
-  cols : DataColType[]
+  cols : DataColType[],
 }
 
 export type DataSortType = {
@@ -25,6 +25,10 @@ export type DataSortType = {
 
 export type DataSortConfig = {
   fields: DataSortType[],
+  default ?: {
+    field: number,
+    asc: boolean,
+  },
   filterText: (data : any) => string
 };
 
@@ -189,7 +193,7 @@ export function GenericEntryProvider<Type extends EntryWithId> (
       }
     }), [entry, eraseApi, saveCheck]);
     const eraseAll = useCallback(() => new Promise<void>((resolve, reject) => {
-      if (window.confirm('Do you really want to delete all items?')) {
+      if (window.confirm('Do you really want to delete all planning?')) {
         // add reference
         let param = undefined;
         if (referenceKey !== undefined)

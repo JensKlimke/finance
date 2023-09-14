@@ -49,6 +49,7 @@ function dataReducer(data: StateType, p: ActionType) : StateType {
       break;
     case 'SET_SORT_CONFIG':
       state.sortConfig = {...(p.payload as DataSortConfig)};
+      state.sort = state.sortConfig?.default;
       break;
     case 'SORT':
       // save sort
