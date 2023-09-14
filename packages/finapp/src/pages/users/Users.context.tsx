@@ -28,7 +28,7 @@ export const useUsers = () => useContext(UserContext);
 const UserProvider = GenericEntryProvider<UserType>('users',
   cleanUserCopy,
   defaultUser,
-  (context : EntryContextType<UserType>, children : React.ReactNode) => (
+  (context: EntryContextType<UserType>, children: React.ReactNode) => (
     <UserContext.Provider value={context}>
       {children}
     </UserContext.Provider>

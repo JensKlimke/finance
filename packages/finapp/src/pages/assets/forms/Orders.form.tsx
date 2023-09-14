@@ -8,12 +8,12 @@ import CalendarInput from "../../../components/forms/CalendarInput";
 
 // create options
 const options = [
-  { value: '', text: '--- Select Type ---', disabled: true},
-  { value: 'dividend', text: 'Dividend' },
-  { value: 'savings_plan', text: 'Savings plan' },
-  { value: 'purchase', text: 'Purchase/Investment' },
-  { value: 'sale', text: 'Sale/Divestment' },
-  { value: 'other', text: 'Other (with sign)' },
+  {value: '', text: '--- Select Type ---', disabled: true},
+  {value: 'dividend', text: 'Dividend'},
+  {value: 'savings_plan', text: 'Savings plan'},
+  {value: 'purchase', text: 'Purchase/Investment'},
+  {value: 'sale', text: 'Sale/Divestment'},
+  {value: 'other', text: 'Other (with sign)'},
 ];
 
 export default function OrdersForm({entry, handleSubmit, update}: {

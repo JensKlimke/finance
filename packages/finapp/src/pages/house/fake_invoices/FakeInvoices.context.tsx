@@ -9,7 +9,7 @@ export type FakeInvoiceType = EntryWithId & {
   date: string,
 }
 
-export const defaultFakeInvoice = () : FakeInvoiceType => ({
+export const defaultFakeInvoice = (): FakeInvoiceType => ({
   description: '',
   creditor: '',
   amount: 0.0,
@@ -29,7 +29,7 @@ export const useFakeInvoices = () => useContext(FakeInvoiceContext);
 const FakeInvoiceProvider = GenericEntryProvider<FakeInvoiceType>('fakeInvoices',
   cleanFakeInvoiceCopy,
   defaultFakeInvoice,
-  (context : EntryContextType<FakeInvoiceType>, children : React.ReactNode) => (
+  (context: EntryContextType<FakeInvoiceType>, children: React.ReactNode) => (
     <FakeInvoiceContext.Provider value={context}>
       {children}
     </FakeInvoiceContext.Provider>

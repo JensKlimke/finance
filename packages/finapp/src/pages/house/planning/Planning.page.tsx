@@ -15,12 +15,12 @@ import DeleteButton from "../../../components/forms/DeleteButton";
 export default function PlanningPage() {
   // get data
   const {
-    data : itemsData,
+    data: itemsData,
     edit,
     saveMany,
     eraseAll
   } = useItems();
-  const {data : expenseData,} = useExpenses();
+  const {data: expenseData,} = useExpenses();
   const sums = useMemo(() => {
     if (!itemsData || !expenseData)
       return {planned: 0.0, used: 0.0, usedWithInvoice: 0.0, usedWithFakeInvoice: 0.0, usedWithoutInvoice: 0.0};
@@ -37,7 +37,7 @@ export default function PlanningPage() {
   return (
     <Container>
       <Row>
-        <Col lg={7} className='mb-4' >
+        <Col lg={7} className='mb-4'>
           <Card>
             <Card.Header>Planning Items</Card.Header>
             <Card.Body>
@@ -60,19 +60,22 @@ export default function PlanningPage() {
                 <tbody>
                 <tr>
                   <td className='p-3 display-6'>Planned:</td>
-                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={sums.planned} /></td>
+                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={sums.planned}/>
+                  </td>
                 </tr>
                 <tr>
                   <td className='p-3 display-6'>Used:</td>
-                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={sums.used} /></td>
+                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={sums.used}/></td>
                 </tr>
                 <tr>
                   <td className='p-3 display-6'>With invoice:</td>
-                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={sums.usedWithInvoice} /></td>
+                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored
+                                                                       amount={sums.usedWithInvoice}/></td>
                 </tr>
                 <tr>
                   <td className='p-3 display-6'>Without invoice:</td>
-                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={sums.usedWithoutInvoice} /></td>
+                  <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored
+                                                                       amount={sums.usedWithoutInvoice}/></td>
                 </tr>
                 </tbody>
               </table>
@@ -81,7 +84,7 @@ export default function PlanningPage() {
           <Card className='mt-3'>
             <Card.Header>Groups</Card.Header>
             <Card.Body>
-              <ItemsDistributionChart data={itemsData} />
+              <ItemsDistributionChart data={itemsData}/>
             </Card.Body>
           </Card>
           <Card className='mt-3'>

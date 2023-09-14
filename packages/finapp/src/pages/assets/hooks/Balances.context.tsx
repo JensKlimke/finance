@@ -26,13 +26,13 @@ export const cleanBalanceCopy = (balance: BalanceType) => ({
 export const BalanceContext = createContext<EntryContextType<BalanceType>>(defaultContext);
 export const useBalances = () => useContext(BalanceContext);
 
-function BalanceProvider ({children} : {children : React.ReactNode}) {
+function BalanceProvider({children}: { children: React.ReactNode }) {
   // create wrapper
   const Wrapper = useMemo(() => {
     return GenericEntryProvider<BalanceType>('balances',
       cleanBalanceCopy,
       defaultBalance,
-      (context : EntryContextType<BalanceType>, children : React.ReactNode) => (
+      (context: EntryContextType<BalanceType>, children: React.ReactNode) => (
         <BalanceContext.Provider value={context}>
           {children}
         </BalanceContext.Provider>

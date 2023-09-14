@@ -1,8 +1,8 @@
 import {catchAsync} from "../utils/catchAsync";
 import {NextFunction, Request, Response} from "express";
 import httpStatusCode from "../utils/HttpStatusCode";
-import {getUserId} from "../utils/auth";
 import HttpStatusCode from "../utils/HttpStatusCode";
+import {getUserId} from "../utils/auth";
 import {RedisController} from "../utils/controller";
 
 export type RequestController = (
@@ -21,7 +21,7 @@ export interface DefaultController {
   deleteEntries: RequestController
 }
 
-const getQuery = (req : Request) => {
+const getQuery = (req: Request) => {
   // convert elements
   const elements = Object.entries(req.query)
     .map(([key, q]) => [key, q.toString()]);
@@ -29,7 +29,7 @@ const getQuery = (req : Request) => {
   return Object.fromEntries(elements);
 }
 
-export function expressController<Type> (controller : RedisController<Type>) : DefaultController {
+export function expressController<Type>(controller: RedisController<Type>): DefaultController {
   // return middleware controllers
   return {
     getEntries: catchAsync(async (req: Request, res: Response) => {

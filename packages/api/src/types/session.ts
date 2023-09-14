@@ -1,4 +1,3 @@
-
 export interface UserData {
   id: string
   name: string
@@ -8,7 +7,7 @@ export interface UserData {
 }
 
 export interface AuthData {
-  user ?: UserData;
-  clientToken ?: string
-  accessToken ?: string
+  user?: UserData;
+  clientToken?: string
+  accessToken?: string
 }

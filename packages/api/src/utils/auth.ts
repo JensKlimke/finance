@@ -31,18 +31,18 @@ export const loadUserData = (accessToken: string) => new Promise<any>((resolve, 
     });
 });
 
-export const checkToken = (token : string, secret : string) : any | undefined => {
+export const checkToken = (token: string, secret: string): any | undefined => {
   try {
     return jwt.verify(token, secret);
-  } catch(e) {
+  } catch (e) {
     return undefined;
   }
 }
 
-export const getUserId = (req : Request) => {
+export const getUserId = (req: Request) => {
   return req.auth.user.id || undefined;
 }
 
-export const getUserRole = (req : Request) => {
+export const getUserRole = (req: Request) => {
   return req.auth.user.role || 'user';
 }

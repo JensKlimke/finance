@@ -5,7 +5,7 @@ const url = `redis://localhost:6379`;
 const uid = 'abc-def-ghi-012-345';
 
 // storages
-let client : RedisClientType | undefined;
+let client: RedisClientType | undefined;
 
 describe("redis controller tests", () => {
   // start redis

@@ -13,7 +13,7 @@ import CurrencyCell from "../../../components/display/CurrencyCell";
 export default function FakeInvoicesPage() {
   // get data
   const {
-    data : fakeInvoicesData,
+    data: fakeInvoicesData,
     edit,
     saveMany,
     eraseAll,
@@ -24,7 +24,7 @@ export default function FakeInvoicesPage() {
   return (
     <Container>
       <Row>
-        <Col lg={8} className='mb-4' >
+        <Col lg={8} className='mb-4'>
           <Card>
             <Card.Header>FakeInvoices</Card.Header>
             <Card.Body>
@@ -45,12 +45,13 @@ export default function FakeInvoicesPage() {
             <Card.Body>
               <table className='p-3 w-100'>
                 <tbody>
-                  <tr>
-                    <td className='p-3 display-6'>Sum</td>
-                    <td className='p-3 display-6 text-end'>
-                      <CurrencyCell fracDigits={0} colored amount={fakeInvoicesData.reduce((s, e) => (s + e.amount), 0.0)} />
-                    </td>
-                  </tr>
+                <tr>
+                  <td className='p-3 display-6'>Sum</td>
+                  <td className='p-3 display-6 text-end'>
+                    <CurrencyCell fracDigits={0} colored
+                                  amount={fakeInvoicesData.reduce((s, e) => (s + e.amount), 0.0)}/>
+                  </td>
+                </tr>
                 </tbody>
               </table>
             </Card.Body>

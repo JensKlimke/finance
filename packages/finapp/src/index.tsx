@@ -24,16 +24,16 @@ root.render(
   <BrowserRouter>
     <AuthProvider>
       <Routes>
-        <Route index element={withAuth(<Dashboard />)} />
-        <Route path="contracts" element={withAuth(<ContractsPage />)} />
-        <Route path="transfer" element={withAuth(<TransferPage />)} />
-        <Route path="stocks" element={withAuth(<StocksPage />)} />
-        <Route path="assets" element={withAuth(<AssetsPage />)} />
-        <Route path="house/*" element={withAuth(<HousePage />)} />
-        <Route path="users" element={withAuth(<UsersPage />)} />
-        <Route path="database" element={withAuth(<DatabasePage />)} />
-        <Route path="about" element={withAuth(<AboutPage />)} />
-        <Route path='*' element={<NotFound />} />
+        <Route index element={withAuth(<Dashboard/>)}/>
+        <Route path="contracts" element={withAuth(<ContractsPage/>)}/>
+        <Route path="transfer" element={withAuth(<TransferPage/>)}/>
+        <Route path="stocks" element={withAuth(<StocksPage/>)}/>
+        <Route path="assets" element={withAuth(<AssetsPage/>)}/>
+        <Route path="house/*" element={withAuth(<HousePage/>)}/>
+        <Route path="users" element={withAuth(<UsersPage/>)}/>
+        <Route path="database" element={withAuth(<DatabasePage/>)}/>
+        <Route path="about" element={withAuth(<AboutPage/>)}/>
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </AuthProvider>
   </BrowserRouter>

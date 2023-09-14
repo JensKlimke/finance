@@ -20,14 +20,14 @@ const options = {
       text: 'Amount',
     },
     labels: {
-      formatter: function (v : number) {
+      formatter: function (v: number) {
         return '€' + (v / 1000).toFixed(1) + 'k'
       }
     },
   }]
 };
 
-export default function OrdersChart ({periods} : {periods: PeriodType[]}) {
+export default function OrdersChart({periods}: { periods: PeriodType[] }) {
   const data = useMemo(() => {
     const per = [...periods].slice(1);
     return [
@@ -39,7 +39,7 @@ export default function OrdersChart ({periods} : {periods: PeriodType[]}) {
   }, [periods]);
   return (
     <Chart
-  // @ts-ignore
+      // @ts-ignore
       options={options}
       series={data}
       type="bar"

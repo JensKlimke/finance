@@ -1,11 +1,11 @@
 import Joi from 'joi'
 import {validation} from "../utils/validation";
 
-const monthArray = (value : any) => {
+const monthArray = (value: any) => {
   if (value.length !== 12) {
     return new Error('month array must be exactly 12 entries');
   }
-  if (!value.every((v : any) => (typeof v === 'boolean'))) {
+  if (!value.every((v: any) => (typeof v === 'boolean'))) {
     return new Error('month array must contain only boolean values');
   }
   return value;

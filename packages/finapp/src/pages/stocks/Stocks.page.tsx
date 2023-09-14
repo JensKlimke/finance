@@ -9,11 +9,11 @@ import ExportButton from "../../components/forms/ExportButton";
 import DeleteButton from "../../components/forms/DeleteButton";
 
 
-export default function StocksPage () {
+export default function StocksPage() {
   // render
   return (
     <StockProvider>
-      <StocksContent />
+      <StocksContent/>
     </StockProvider>
   );
 }

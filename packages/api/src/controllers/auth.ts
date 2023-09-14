@@ -15,7 +15,8 @@ import {
   GITHUB_TOKEN_URL,
   HOST_URL,
   SESSION_SECRET,
-  STATE_SECRET, SUPER_ADMIN_ID,
+  STATE_SECRET,
+  SUPER_ADMIN_ID,
   USER_DB_KEY
 } from "../config/env";
 import {UserData} from "../types/session";

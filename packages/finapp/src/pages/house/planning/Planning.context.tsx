@@ -11,7 +11,7 @@ export type ItemType = EntryWithId & {
   comment: string
 }
 
-export const defaultItem = () : ItemType => ({
+export const defaultItem = (): ItemType => ({
   description: '',
   group: '',
   units: 0,
@@ -37,7 +37,7 @@ export const useItems = () => useContext(ItemContext);
 const ItemProvider = GenericEntryProvider<ItemType>('items',
   cleanItemCopy,
   defaultItem,
-  (context : EntryContextType<ItemType>, children : React.ReactNode) => (
+  (context: EntryContextType<ItemType>, children: React.ReactNode) => (
     <ItemContext.Provider value={context}>
       {children}
     </ItemContext.Provider>

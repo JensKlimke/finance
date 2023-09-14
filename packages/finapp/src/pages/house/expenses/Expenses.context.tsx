@@ -14,7 +14,7 @@ export type ExpenseType = EntryWithId & {
   item: string
 }
 
-export const defaultExpense = () : ExpenseType => ({
+export const defaultExpense = (): ExpenseType => ({
   description: '',
   category: 'tools',
   creditor: '',
@@ -44,7 +44,7 @@ export const useExpenses = () => useContext(ExpenseContext);
 const ExpenseProvider = GenericEntryProvider<ExpenseType>('expenses',
   cleanExpenseCopy,
   defaultExpense,
-  (context : EntryContextType<ExpenseType>, children : React.ReactNode) => (
+  (context: EntryContextType<ExpenseType>, children: React.ReactNode) => (
     <ExpenseContext.Provider value={context}>
       {children}
     </ExpenseContext.Provider>

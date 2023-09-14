@@ -4,9 +4,9 @@ const Months = Array.from(Array(12).keys());
 const styleFilled = {fill: 'gray', fillOpacity: 0.4, stroke: 'black', strokeWidth: 1};
 const styleFilledNext = {fill: 'orange', fillOpacity: 1, stroke: 'black', strokeWidth: 1};
 const styleUnfilled = {fill: 'none', stroke: 'black', strokeWidth: 1};
-const styleTest = { fill: 'black', font: "bold 18px serif" }
+const styleTest = {fill: 'black', font: "bold 18px serif"}
 
-export default function MonthCircle({months, next} : {months: boolean[], next: number}) {
+export default function MonthCircle({months, next}: { months: boolean[], next: number }) {
 
   const [styles, setStyles] = useState(Array(12).fill(styleUnfilled));
   const monthChars = 'JFMAMJJASOND';

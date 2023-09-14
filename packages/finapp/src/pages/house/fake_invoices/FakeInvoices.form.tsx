@@ -6,10 +6,10 @@ import FilterInput from "../../../components/forms/FilterInput";
 import {FakeInvoiceType, useFakeInvoices} from "./FakeInvoices.context";
 import CalendarInput from "../../../components/forms/CalendarInput";
 
-export default function FakeInvoicesForm ({entry, handleSubmit, update} : {
-  entry : FakeInvoiceType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<FakeInvoiceType>
+export default function FakeInvoicesForm({entry, handleSubmit, update}: {
+  entry: FakeInvoiceType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<FakeInvoiceType>
 }) {
   const {data} = useFakeInvoices();
   return (

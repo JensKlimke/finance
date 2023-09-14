@@ -3,7 +3,7 @@ import {PeriodType} from "../hooks/periods";
 import {useMemo} from "react";
 import {ApexOptions} from "apexcharts";
 
-const options : ApexOptions = {
+const options: ApexOptions = {
   chart: {
     foreColor: '#ffffff',
     animations: {
@@ -21,14 +21,14 @@ const options : ApexOptions = {
       text: 'Amount',
     },
     labels: {
-      formatter: function (v : number) {
+      formatter: function (v: number) {
         return '€' + (v / 1000).toFixed(1) + 'k'
       }
     },
   }]
 };
 
-export default function BalanceChart ({periods} : {periods: PeriodType[]}) {
+export default function BalanceChart({periods}: { periods: PeriodType[] }) {
   const data = useMemo(() => {
     const per = [...periods].slice(1);
     return [

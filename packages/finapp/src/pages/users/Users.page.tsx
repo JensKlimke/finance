@@ -18,7 +18,7 @@ export default function UsersPage() {
 
 const UserContent = () => {
   // get data
-  const {data : usersData, edit} = useUsers();
+  const {data: usersData, edit} = useUsers();
   // check user data
   if (!usersData)
     return <p className='text-center text-muted'>403 - Forbidden</p>

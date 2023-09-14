@@ -92,7 +92,7 @@ export default function Nav() {
             <NavLink to='/database'>
               <li>
                 <span className='icon'>
-                  <BsDatabase />
+                  <BsDatabase/>
                 </span>
                 <span className='text'>
                   Database

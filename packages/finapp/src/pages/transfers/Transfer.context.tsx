@@ -25,7 +25,7 @@ export const useTransfers = () => useContext(TransferContext);
 const TransferProvider = GenericEntryProvider<TransferType>('transfers',
   cleanTransferCopy,
   defaultTransfer,
-  (context : EntryContextType<TransferType>, children : React.ReactNode) => (
+  (context: EntryContextType<TransferType>, children: React.ReactNode) => (
     <TransferContext.Provider value={context}>
       {children}
     </TransferContext.Provider>

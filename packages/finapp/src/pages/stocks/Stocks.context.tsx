@@ -34,7 +34,7 @@ export const useStocks = () => useContext(StockContext);
 const StockProvider = GenericEntryProvider<StockType>('stocks',
   cleanStockCopy,
   defaultStock,
-  (context : EntryContextType<StockType>, children : React.ReactNode) => (
+  (context: EntryContextType<StockType>, children: React.ReactNode) => (
     <StockContext.Provider value={context}>
       {children}
     </StockContext.Provider>

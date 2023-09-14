@@ -22,7 +22,7 @@ export const useAccounts = () => useContext(AccountContext);
 const AccountProvider = GenericEntryProvider<AccountType>('accounts',
   cleanAccountCopy,
   defaultAccount,
-  (context : EntryContextType<AccountType>, children : React.ReactNode) => (
+  (context: EntryContextType<AccountType>, children: React.ReactNode) => (
     <AccountContext.Provider value={context}>
       {children}
     </AccountContext.Provider>

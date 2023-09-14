@@ -2,8 +2,8 @@ import {NextFunction, Request, Response} from "express";
 import ApiError from "../utils/ApiError";
 import HttpStatusCode from "../utils/HttpStatusCode";
 
-export const errorHandler = (err : Error, req : Request, res : Response, _ : NextFunction) => {
-  let error : ApiError;
+export const errorHandler = (err: Error, req: Request, res: Response, _: NextFunction) => {
+  let error: ApiError;
   // check and convert error
   if (!(err instanceof ApiError)) {
     console.error(err);

@@ -3,7 +3,7 @@ import {Button, Form} from "react-bootstrap";
 import moment from "moment";
 
 
-function MonthButton({active, name, onSelect} : {active: boolean, name : string, onSelect : (active : boolean) => void}) {
+function MonthButton({active, name, onSelect}: { active: boolean, name: string, onSelect: (active: boolean) => void }) {
   // states
   const [isActive, setActive] = useState(active);
   // effects
@@ -31,7 +31,8 @@ function MonthButton({active, name, onSelect} : {active: boolean, name : string,
         type='checkbox'
         style={{'display': 'none'}}
         checked={isActive}
-        onChange={() => {}}
+        onChange={() => {
+        }}
       />
     </td>
   )
@@ -39,14 +40,14 @@ function MonthButton({active, name, onSelect} : {active: boolean, name : string,
 }
 
 
-const monthName = (month : number) =>
+const monthName = (month: number) =>
   moment(new Date(2000, month, 1, 0, 0, 0, 0.0)).format('MMM');
 
-export default function MonthSelect({value, onChange} : {value : boolean[], onChange : (months : boolean[]) => void}) {
+export default function MonthSelect({value, onChange}: { value: boolean[], onChange: (months: boolean[]) => void }) {
   // states
   const [months, setMonths] = useState(value);
   // callbacks
-  const handleSelect = useCallback((month : number, state : boolean) => {
+  const handleSelect = useCallback((month: number, state: boolean) => {
     let m = [...months];
     m[month] = state;
     setMonths(m);
@@ -61,9 +62,9 @@ export default function MonthSelect({value, onChange} : {value : boolean[], onCh
     <table>
       <tbody>
       {
-        [0,1,2,3].map(i => (
+        [0, 1, 2, 3].map(i => (
           <tr key={i}>
-            {[0,1,2].map(j => {
+            {[0, 1, 2].map(j => {
               let m = i * 3 + j;
               return (
                 <MonthButton

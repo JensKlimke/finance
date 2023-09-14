@@ -9,7 +9,7 @@ export type DepositType = EntryWithId & {
   comment: string,
 }
 
-export const defaultDeposit = () : DepositType => ({
+export const defaultDeposit = (): DepositType => ({
   amount: 0,
   date: moment().format('YYYY-MM-DD'),
   payer: 'Jens',
@@ -29,7 +29,7 @@ export const useDeposits = () => useContext(DepositContext);
 const DepositProvider = GenericEntryProvider<DepositType>('deposits',
   cleanDepositCopy,
   defaultDeposit,
-  (context : EntryContextType<DepositType>, children : React.ReactNode) => (
+  (context: EntryContextType<DepositType>, children: React.ReactNode) => (
     <DepositContext.Provider value={context}>
       {children}
     </DepositContext.Provider>

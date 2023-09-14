@@ -1,7 +1,7 @@
 import {Button} from "react-bootstrap";
 import {useCallback, useState} from "react";
 
-export default function DeleteButton ({onDelete} : { onDelete : () => Promise<void> }) {
+export default function DeleteButton({onDelete}: { onDelete: () => Promise<void> }) {
   // states
   const [pending, setPending] = useState(false);
   // callbacks

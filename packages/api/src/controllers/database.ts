@@ -4,7 +4,7 @@ import httpStatusCode from "../utils/HttpStatusCode";
 
 const getDatabaseKeys = (async (req: Request, res: Response) => {
   // get keys
-  const keys= await financeClient.keys('*');
+  const keys = await financeClient.keys('*');
   // return keys
   res.status(httpStatusCode.OK).send(keys);
 });

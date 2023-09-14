@@ -3,8 +3,8 @@ import {useAuth} from "./auth";
 import {API_URL} from "../config/env";
 
 function _fetch<ObjectType, ResponseType>(
-  url : string,
-  token : string | undefined,
+  url: string,
+  token: string | undefined,
   parameters ?: { [key: string]: any },
   id ?: string | string[] | null[] | null,
   data ?: ObjectType | ObjectType[] | null,
@@ -31,7 +31,7 @@ function _fetch<ObjectType, ResponseType>(
     // generate url
     parameters && Object.entries(parameters).forEach(([key, value]) => fetchUrl.searchParams.set(key, value));
     // create headers
-    const headers : {[key : string] : string} = {'Content-Type': 'application/json'};
+    const headers: { [key: string]: string } = {'Content-Type': 'application/json'};
     token && (headers['Authorization'] = `Bearer ${token}`);
     // return fetch
     fetch(fetchUrl.toString(), {method, headers, body})
@@ -51,7 +51,7 @@ function _fetch<ObjectType, ResponseType>(
 }
 
 
-export function useApi<Type>(path : string) {
+export function useApi<Type>(path: string) {
   // data
   const [data, setData] = useState<Type[]>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -67,10 +67,10 @@ export function useApi<Type>(path : string) {
       .catch(console.error)
       .then(() => setLoading(false));
   }, [url, session?.token]);
-  const save = useCallback((id : string | undefined, object : Type | Type[], parameters?: { [key: string]: any }) => {
+  const save = useCallback((id: string | undefined, object: Type | Type[], parameters?: { [key: string]: any }) => {
     return _fetch(url, session?.token, parameters, id, object);
   }, [url, session?.token]);
-  const erase = useCallback((id : string | null[] | undefined, parameters?: { [key: string]: any }) => {
+  const erase = useCallback((id: string | null[] | undefined, parameters?: { [key: string]: any }) => {
     return _fetch(url, session?.token, parameters, id, null);
   }, [url, session?.token]);
   // return data

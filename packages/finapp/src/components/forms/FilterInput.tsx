@@ -2,12 +2,12 @@ import {useMemo, useState} from "react";
 import {Dropdown, Form} from "react-bootstrap";
 
 interface FilterInputProps {
-  value : string
-  update : (value: string) => void
-  list : string[] | undefined
+  value: string
+  update: (value: string) => void
+  list: string[] | undefined
 }
 
-export default function FilterInput({value, update, list} : FilterInputProps) {
+export default function FilterInput({value, update, list}: FilterInputProps) {
   const [show, setShow] = useState(false);
   const itemList = useMemo(() => {
     return list && list
@@ -34,7 +34,10 @@ export default function FilterInput({value, update, list} : FilterInputProps) {
                 <Dropdown.Item
                   key={e}
                   eventKey={e}
-                  onClick={() => {update(e); setShow(false)}}
+                  onClick={() => {
+                    update(e);
+                    setShow(false)
+                  }}
                   active={e === 'value'}
                 >
                   {e}

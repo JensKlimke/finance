@@ -1,7 +1,11 @@
 import {Button, ButtonGroup} from "react-bootstrap";
 import {AccountType} from "../hooks/Accounts.context";
 
-export default function AccountSelector ({accounts, selected, onSelect} : {accounts : AccountType[], selected : string | undefined, onSelect : (id : string) => void }) {
+export default function AccountSelector({accounts, selected, onSelect}: {
+  accounts: AccountType[],
+  selected: string | undefined,
+  onSelect: (id: string) => void
+}) {
   // if only one account, show as header
   if (accounts.length === 1)
     return <h4 className='text-center mb-4'>{accounts[0].name}</h4>;

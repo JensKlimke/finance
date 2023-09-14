@@ -5,10 +5,10 @@ import AmountInput from "../../components/forms/AmountInput";
 import MonthSelect from "../../components/forms/MonthSelect";
 import {UpdateCallbackType} from "../../hooks/entry";
 
-export default function ContractsForm ({entry, handleSubmit, update} : {
-  entry : ContractType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<ContractType>
+export default function ContractsForm({entry, handleSubmit, update}: {
+  entry: ContractType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<ContractType>
 }) {
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>

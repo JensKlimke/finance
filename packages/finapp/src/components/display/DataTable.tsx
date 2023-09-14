@@ -13,14 +13,14 @@ type StateType = {
   page: number
   totalPages: number
   display: EntryWithId[]
-  totalDisplay : number
+  totalDisplay: number
   results: EntryWithId[]
-  totalResults : number
+  totalResults: number
   sortConfig: DataSortConfig | undefined
   filter: string
 }
 
-const stateDefault : StateType = {
+const stateDefault: StateType = {
   sort: undefined,
   page: 0,
   totalPages: 0,
@@ -37,7 +37,7 @@ type ActionType = {
   payload: any
 };
 
-function dataReducer(data: StateType, p: ActionType) : StateType {
+function dataReducer(data: StateType, p: ActionType): StateType {
   const state = {...data};
   switch (p.action) {
     case 'SET_RESULTS':
@@ -118,7 +118,7 @@ export default function DataTable({tableConfig, cardConfig, sortConfig, data, on
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
-        { onAdd ?
+        {onAdd ?
           <Button onClick={onAdd}><BsPlusCircle/></Button> :
           <span>&nbsp;</span>
         }
@@ -130,7 +130,8 @@ export default function DataTable({tableConfig, cardConfig, sortConfig, data, on
             <Pagination className='mb-0'>
               {
                 Array(state.totalPages).fill(0).map((_, p) => (
-                  <Pagination.Item key={p} active={p === state.page} onClick={() => dispatch({action: 'SET_PAGE', payload: p})}>
+                  <Pagination.Item key={p} active={p === state.page}
+                                   onClick={() => dispatch({action: 'SET_PAGE', payload: p})}>
                     {p + 1}
                   </Pagination.Item>
                 ))
@@ -138,16 +139,17 @@ export default function DataTable({tableConfig, cardConfig, sortConfig, data, on
             </Pagination>
           )
         }
-        { (sortConfig && state.results.length > 0) ?
+        {(sortConfig && state.results.length > 0) ?
           <Dropdown>
             <Dropdown.Toggle>
-              <BsSortAlphaDown />
+              <BsSortAlphaDown/>
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {
                 sortConfig.fields.map((c, i) => (
                   <Dropdown.Item key={i} onClick={() => dispatch({action: 'SORT', payload: i})}>
-                    {state.sort && state.sort.field === i ? (state.sort.asc ? <BsArrowDown/> : <BsArrowUp/>) : <BsDot />}&nbsp;{c.label}
+                    {state.sort && state.sort.field === i ? (state.sort.asc ? <BsArrowDown/> : <BsArrowUp/>) :
+                      <BsDot/>}&nbsp;{c.label}
                   </Dropdown.Item>
                 ))
               }
@@ -168,34 +170,34 @@ export default function DataTable({tableConfig, cardConfig, sortConfig, data, on
                   onChange={(e) => dispatch({action: 'SET_FILTER', payload: e.target.value})}
                 />
                 <Button variant='outline-light' onClick={() => dispatch({action: 'SET_FILTER', payload: ''})}>
-                  <BsXLg />
+                  <BsXLg/>
                 </Button>
               </InputGroup>
             </Form>
           </div>
         )
       }
-      { (state.totalDisplay > 0) && (
+      {(state.totalDisplay > 0) && (
         <>
           <div className='overflow-auto mt-3'>
             <div className='d-none d-md-block'>
               {tableConfig &&
-                <TableComponent
-                  config={tableConfig}
-                  state={state}
-                  updateSort={(i) => dispatch({action: 'SORT', payload: i})}
-                  onRowClick={onRowClick}
-                />
+                  <TableComponent
+                      config={tableConfig}
+                      state={state}
+                      updateSort={(i) => dispatch({action: 'SORT', payload: i})}
+                      onRowClick={onRowClick}
+                  />
               }
             </div>
             <div className='d-block d-md-none'>
               {cardConfig &&
-                <CardsComponent
-                  config={cardConfig}
-                  state={state}
-                  updateSort={(i) => dispatch({action: 'SORT', payload: i})}
-                  onRowClick={onRowClick}
-                />
+                  <CardsComponent
+                      config={cardConfig}
+                      state={state}
+                      updateSort={(i) => dispatch({action: 'SORT', payload: i})}
+                      onRowClick={onRowClick}
+                  />
               }
             </div>
           </div>
@@ -204,8 +206,8 @@ export default function DataTable({tableConfig, cardConfig, sortConfig, data, on
           </p>
         </>
       )}
-      { (state.totalDisplay === 0 && state.results.length > 0) && (
-          <p className='text-center mt-4'>Change filter to show results.</p>
+      {(state.totalDisplay === 0 && state.results.length > 0) && (
+        <p className='text-center mt-4'>Change filter to show results.</p>
       )}
     </>
   )
@@ -219,7 +221,7 @@ interface DataComponentProps {
   onRowClick: OnRowClickType
 }
 
-function TableComponent({config, state, updateSort, onRowClick} : DataComponentProps) {
+function TableComponent({config, state, updateSort, onRowClick}: DataComponentProps) {
   return (
     <Table striped bordered hover style={{width: '100%'}}>
       <thead>
@@ -227,7 +229,7 @@ function TableComponent({config, state, updateSort, onRowClick} : DataComponentP
         {config.cols.map((c, i) => {
           // create props
           const props = {
-            style: c.width ?  {width: `${c.width}%`} : undefined,
+            style: c.width ? {width: `${c.width}%`} : undefined,
             key: i,
             className: 'text-center text-nowrap user-select-none',
             scope: 'col',
@@ -240,7 +242,8 @@ function TableComponent({config, state, updateSort, onRowClick} : DataComponentP
                 onClick={() => updateSort(c.sort || 0)}
                 role='button'
               >
-                {c.label}&nbsp;{state.sort && state.sort.field === c.sort ? (state.sort.asc ? <BsArrowDown/> : <BsArrowUp/>) : <BsDot />}
+                {c.label}&nbsp;{state.sort && state.sort.field === c.sort ? (state.sort.asc ? <BsArrowDown/> :
+                <BsArrowUp/>) : <BsDot/>}
               </th>
             );
           } else {
@@ -270,24 +273,26 @@ function TableComponent({config, state, updateSort, onRowClick} : DataComponentP
   )
 }
 
-function CardsComponent ({config, state, onRowClick} : DataComponentProps) {
+function CardsComponent({config, state, onRowClick}: DataComponentProps) {
   return (
     <>
       {
         state.display.map((d, i) => (
-          <Card key={i} onClick={() => onRowClick(d, state.results, i, state.page, state.totalPages)} role='button' className='mb-3'>
-            { config.title && <Card.Header>{config.title(d, state.results, i)}</Card.Header> }
+          <Card key={i} onClick={() => onRowClick(d, state.results, i, state.page, state.totalPages)} role='button'
+                className='mb-3'>
+            {config.title && <Card.Header>{config.title(d, state.results, i)}</Card.Header>}
             <Table borderless striped className='m-0'>
               <tbody>
-              { config.cols.map((c, j) => (
+              {config.cols.map((c, j) => (
                 <tr key={j}>
                   <td key={i} width='50%'>{c.label}</td>
                   <td className={c.className || ''}>{c.content(d, state.results, i, state.page, state.totalPages)}</td>
                 </tr>
-              )) }
+              ))}
               </tbody>
             </Table>
-            { config.footer && <Card.Footer>{config.footer(d, state.results, i, state.page, state.totalPages)}</Card.Footer> }
+            {config.footer &&
+                <Card.Footer>{config.footer(d, state.results, i, state.page, state.totalPages)}</Card.Footer>}
           </Card>
         ))
       }

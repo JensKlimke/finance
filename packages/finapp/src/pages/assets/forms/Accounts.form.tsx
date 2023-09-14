@@ -3,10 +3,10 @@ import {Form} from "react-bootstrap";
 import {AccountType} from "../hooks/Accounts.context";
 import {UpdateCallbackType} from "../../../hooks/entry";
 
-export default function AccountsForm ({entry, handleSubmit, update} : {
-  entry : AccountType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<AccountType>
+export default function AccountsForm({entry, handleSubmit, update}: {
+  entry: AccountType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<AccountType>
 }) {
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>

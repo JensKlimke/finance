@@ -24,12 +24,12 @@ export default function HousePage() {
               <NavButton to='/house/fakes'>Fake Invoices</NavButton>
               <NavButton to='/house/planning'>Planning </NavButton>
             </ButtonGroup>
-            <hr />
+            <hr/>
             <Routes>
-              <Route path="*" element={<ExpensesPage/>} />
-              <Route path="/planning" element={<PlanningPage />} />
-              <Route path="/deposits" element={<DepositsPage />} />
-              <Route path="/fakes" element={<FakeInvoicesPage />} />
+              <Route path="*" element={<ExpensesPage/>}/>
+              <Route path="/planning" element={<PlanningPage/>}/>
+              <Route path="/deposits" element={<DepositsPage/>}/>
+              <Route path="/fakes" element={<FakeInvoicesPage/>}/>
             </Routes>
           </FakeInvoiceProvider>
         </DepositProvider>

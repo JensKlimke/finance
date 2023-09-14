@@ -30,7 +30,7 @@ export const cleanOrderCopy = (order: OrderType) => ({
   type: order.type
 });
 
-export const TypeMapping : StringKeyStringValueObjectsType = {
+export const TypeMapping: StringKeyStringValueObjectsType = {
   'savings_plan': 'Savings plan',
   'dividend': 'Dividend',
   'sale': 'Sale',
@@ -41,13 +41,13 @@ export const TypeMapping : StringKeyStringValueObjectsType = {
 export const OrdersContext = createContext<EntryContextType<OrderType>>(defaultContext);
 export const useOrders = () => useContext(OrdersContext);
 
-function OrderProvider ({children} : {children : React.ReactNode}) {
+function OrderProvider({children}: { children: React.ReactNode }) {
   // create wrapper
   const Wrapper = useMemo(() => {
     return GenericEntryProvider<OrderType>('orders',
       cleanOrderCopy,
       defaultOrder,
-      (context : EntryContextType<OrderType>, children : React.ReactNode) => (
+      (context: EntryContextType<OrderType>, children: React.ReactNode) => (
         <OrdersContext.Provider value={context}>
           {children}
         </OrdersContext.Provider>

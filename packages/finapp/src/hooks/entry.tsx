@@ -5,42 +5,42 @@ import {useApi} from "./api";
 export type ContentElement = JSX.Element | string | number;
 
 export type DataColType = {
-  label : ContentElement
-  content : (row : any, data : any[], index : number, page ?: number, noOfPages ?: number) => ContentElement
-  className ?: string
-  sort ?: number
-  width ?: number
+  label: ContentElement
+  content: (row: any, data: any[], index: number, page ?: number, noOfPages ?: number) => ContentElement
+  className?: string
+  sort?: number
+  width?: number
 }
 
 export type DataComponentConfigType = {
-  title ?: (row : any, data : any[], index : number, page ?: number, noOfPages ?: number) => ContentElement
-  footer ?: (row : any, data : any[], index : number, page ?: number, noOfPages ?: number) => ContentElement
-  cols : DataColType[],
+  title?: (row: any, data: any[], index: number, page ?: number, noOfPages ?: number) => ContentElement
+  footer?: (row: any, data: any[], index: number, page ?: number, noOfPages ?: number) => ContentElement
+  cols: DataColType[],
 }
 
 export type DataSortType = {
   label: string
-  callback: (a : any, b : any) => number
+  callback: (a: any, b: any) => number
 }
 
 export type DataSortConfig = {
   fields: DataSortType[],
-  default ?: {
+  default?: {
     field: number,
     asc: boolean,
   },
-  filterText: (data : any) => string
+  filterText: (data: any) => string
 };
 
 export type OnRowClickType =
-  (row : EntryWithId, data : EntryWithId[], index : number, page ?: number, noOfPages ?: number) => void
+  (row: EntryWithId, data: EntryWithId[], index: number, page ?: number, noOfPages ?: number) => void
 
 export type StringKeyStringValueObjectsType = { [key: string]: string; };
 
 export type ReloadCallbackType = (referenceID ?: string) => void
 export type SaveCallbackType = () => void;
 export type UpdateCallbackType<Type> = (key: keyof Type, value: any) => void;
-export type SaveManyCallbackType<Type> = (entries : Type[]) => Promise<void>;
+export type SaveManyCallbackType<Type> = (entries: Type[]) => Promise<void>;
 export type EraseCallbackType = () => void;
 export type EraseAllCallbackType = () => Promise<void>;
 export type EditCallbackType<Type> = (id: string | undefined, data ?: Type) => void;
@@ -50,14 +50,14 @@ export type EntryContextType<Type> = {
   data?: Type[] // EntryResponseType<Type>
   reload: ReloadCallbackType
   save: SaveCallbackType
-  saveMany : SaveManyCallbackType<Type>
+  saveMany: SaveManyCallbackType<Type>
   erase: EraseCallbackType
   eraseAll: EraseAllCallbackType
   update: UpdateCallbackType<Type>
   edit: EditCallbackType<Type>
   entry?: Type
-  setReference : (reference ?: string) => void
-  setFilter: (filter : { [key: string]: string; }) => void
+  setReference: (reference ?: string) => void
+  setFilter: (filter: { [key: string]: string; }) => void
   loading: boolean
 }
 
@@ -93,16 +93,16 @@ export const defaultContext = {
 }
 
 export type EntryWithId = {
-  _id ?: string
+  _id?: string
 }
 
-export function GenericEntryProvider<Type extends EntryWithId> (
-  apiKey : string,
-  cleanCopy : (data : any) => Type,
-  defaultObject : () => Type,
-  providerElement : (
-    context : EntryContextType<Type>,
-    children : React.ReactNode
+export function GenericEntryProvider<Type extends EntryWithId>(
+  apiKey: string,
+  cleanCopy: (data: any) => Type,
+  defaultObject: () => Type,
+  providerElement: (
+    context: EntryContextType<Type>,
+    children: React.ReactNode
   ) => JSX.Element,
   referenceKey ?: string,
   defaultFilter ?: StringKeyStringValueObjectsType,
@@ -113,7 +113,7 @@ export function GenericEntryProvider<Type extends EntryWithId> (
     const [filter, setFilter] = useState<StringKeyStringValueObjectsType>(defaultFilter || {});
     const [reference, setReference] = useState<string>();
     const [entry, setEntry] = useState<Type>();
-    const {data, save : saveApi, erase : eraseApi, reload : reloadData, loading} = useApi<Type>(apiKey);
+    const {data, save: saveApi, erase: eraseApi, reload: reloadData, loading} = useApi<Type>(apiKey);
     const reload = useCallback(() => {
       if (referenceKey === undefined)
         reloadData({...filter});
@@ -145,7 +145,7 @@ export function GenericEntryProvider<Type extends EntryWithId> (
       // otherwise return entry
       setEntry(c);
     }, [data, reference]);
-    const saveCheck = useCallback((j : any) => {
+    const saveCheck = useCallback((j: any) => {
       if (j.code && j.message) {
         // reject with error
         throw new Error(j.message);
@@ -160,16 +160,16 @@ export function GenericEntryProvider<Type extends EntryWithId> (
       // create clean copy
       let obj = cleanCopy(entry);
       // add reference
-      let params : {[key : string] : string} = {};
+      let params: { [key: string]: string } = {};
       if (referenceKey !== undefined && reference !== undefined)
         params[referenceKey] = reference;
       // save object
       saveApi(entry?._id, obj, params)
-        .then((j : any) => saveCheck(j))
+        .then((j: any) => saveCheck(j))
         .then(() => resolve())
         .catch(e => reject(e));
     }), [entry, reference, saveApi, saveCheck]);
-    const saveMany = useCallback((entries : Type[]) => new Promise<void>((resolve, reject) => {
+    const saveMany = useCallback((entries: Type[]) => new Promise<void>((resolve, reject) => {
       // create clean copy
       let objects = entries.map(entry => cleanCopy(entry));
       // add reference
@@ -178,7 +178,7 @@ export function GenericEntryProvider<Type extends EntryWithId> (
         param = {[referenceKey]: reference};
       // save
       saveApi(undefined, objects, param)
-        .then((j : any) => saveCheck(j))
+        .then((j: any) => saveCheck(j))
         .then(() => resolve())
         .catch(e => reject(e));
     }), [reference, saveApi, saveCheck]);
@@ -187,7 +187,7 @@ export function GenericEntryProvider<Type extends EntryWithId> (
       // confirm
       if (window.confirm(`Do you really want to delete the item ${entry._id}?`)) {
         eraseApi(entry._id)
-          .then((j : any) => saveCheck(j))
+          .then((j: any) => saveCheck(j))
           .then(() => resolve())
           .catch(e => reject(e))
       }
@@ -200,7 +200,7 @@ export function GenericEntryProvider<Type extends EntryWithId> (
           param = {[referenceKey]: reference};
         // erase
         eraseApi([], param)
-          .then((j : any) => saveCheck(j))
+          .then((j: any) => saveCheck(j))
           .then(() => resolve())
           .catch(e => reject(e))
       }

@@ -13,7 +13,7 @@ import {DepositContext, useDeposits} from "./Deposits.context";
 export default function DepositsPage() {
   // get data
   const {
-    data : depositsData,
+    data: depositsData,
     edit,
     saveMany,
     eraseAll,
@@ -22,8 +22,8 @@ export default function DepositsPage() {
     if (!depositsData) return undefined;
     return {
       payers: [
-        { key: 'Cathrin', amount: depositsData.filter(e => e.payer === 'Cathrin').reduce((s, e) => s + e.amount, 0.0) },
-        { key: 'Jens', amount: depositsData.filter(e => e.payer === 'Jens').reduce((s, e) => s + e.amount, 0.0) },
+        {key: 'Cathrin', amount: depositsData.filter(e => e.payer === 'Cathrin').reduce((s, e) => s + e.amount, 0.0)},
+        {key: 'Jens', amount: depositsData.filter(e => e.payer === 'Jens').reduce((s, e) => s + e.amount, 0.0)},
       ]
     }
   }, [depositsData]);
@@ -33,7 +33,7 @@ export default function DepositsPage() {
   return (
     <Container>
       <Row>
-        <Col lg={8} className='mb-4' >
+        <Col lg={8} className='mb-4'>
           <Card>
             <Card.Header>Deposits</Card.Header>
             <Card.Body>
@@ -58,7 +58,8 @@ export default function DepositsPage() {
                   sums?.payers.map((s) => (
                     <tr key={s.key}>
                       <td className='p-3 display-6'>{s.key}</td>
-                      <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={s.amount} /></td>
+                      <td className='p-3 display-6 text-end'><CurrencyCell fracDigits={0} colored amount={s.amount}/>
+                      </td>
                     </tr>
                   ))
                 }

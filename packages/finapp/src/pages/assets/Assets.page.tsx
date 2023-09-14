@@ -78,14 +78,14 @@ function AccountManager() {
 }
 
 type AccountPeriodProps = {
-  account : string | undefined,
-  periods ?: PeriodType[] | undefined
-  accounts ?: AccountType[] | undefined
-  balances ?: BalanceType[] | undefined
-  orders ?: OrderType[] | undefined
+  account: string | undefined,
+  periods?: PeriodType[] | undefined
+  accounts?: AccountType[] | undefined
+  balances?: BalanceType[] | undefined
+  orders?: OrderType[] | undefined
 }
 
-function DetailedContentView ({account, periods, balances, orders} : AccountPeriodProps) {
+function DetailedContentView({account, periods, balances, orders}: AccountPeriodProps) {
   // do not render
   if (!account || !periods) {
     return (
@@ -100,13 +100,13 @@ function DetailedContentView ({account, periods, balances, orders} : AccountPeri
       <Card>
         <Card.Header>Balances</Card.Header>
         <Card.Body>
-          <BalancesTable periods={periods} balances={balances} />
+          <BalancesTable periods={periods} balances={balances}/>
         </Card.Body>
       </Card>
       <Card className='mt-4'>
         <Card.Header>Orders</Card.Header>
         <Card.Body>
-          <OrdersTable periods={periods} orders={orders} />
+          <OrdersTable periods={periods} orders={orders}/>
         </Card.Body>
       </Card>
     </Col>
@@ -114,7 +114,7 @@ function DetailedContentView ({account, periods, balances, orders} : AccountPeri
 }
 
 
-function MetricsCardView ({account, periods} : AccountPeriodProps) {
+function MetricsCardView({account, periods}: AccountPeriodProps) {
   // check
   if (!account || !periods || periods.length === 0) return null;
   // render
@@ -130,19 +130,19 @@ function MetricsCardView ({account, periods} : AccountPeriodProps) {
 }
 
 
-function ImportExportButtonGroup ({account, accounts, orders, balances} : AccountPeriodProps ) {
+function ImportExportButtonGroup({account, accounts, orders, balances}: AccountPeriodProps) {
   // get data
   const {
-    eraseAll : eraseAllAccounts,
-    saveMany : saveManyAccounts
+    eraseAll: eraseAllAccounts,
+    saveMany: saveManyAccounts
   } = useAccounts();
   const {
-    eraseAll : eraseAllBalances,
-    saveMany : saveManyBalances
+    eraseAll: eraseAllBalances,
+    saveMany: saveManyBalances
   } = useBalances();
   const {
-    eraseAll : eraseAllOrders,
-    saveMany : saveManyOrders
+    eraseAll: eraseAllOrders,
+    saveMany: saveManyOrders
   } = useOrders();
   // render
   return (

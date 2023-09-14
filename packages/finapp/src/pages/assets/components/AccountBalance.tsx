@@ -3,7 +3,7 @@ import CurrencyCell from "../../../components/display/CurrencyCell";
 import {BalanceType} from "../hooks/Balances.context";
 import {useApiData} from "../../../hooks/api";
 
-export default function AccountBalance ({account} : {account : string}) {
+export default function AccountBalance({account}: { account: string }) {
   // memos
   const parameters = useMemo(() => ({account}), [account]);
   // data
@@ -18,8 +18,8 @@ export default function AccountBalance ({account} : {account : string}) {
   // render
   return (
     <h1 className="text-nowrap display-4 text-center">
-      { current?.amount === undefined && <>&hellip;</> }
-      { current?.amount !== undefined && <CurrencyCell amount={current?.amount || 0.0} colored fracDigits={0} /> }
+      {current?.amount === undefined && <>&hellip;</>}
+      {current?.amount !== undefined && <CurrencyCell amount={current?.amount || 0.0} colored fracDigits={0}/>}
     </h1>
   );
 }

@@ -10,7 +10,7 @@ import {EditCallbackType} from "../../../hooks/entry";
 import {useEffect, useMemo, useState} from "react";
 
 
-export default function BalancesTable ({periods, balances} : {periods?: PeriodType[], balances?: BalanceType[]}) {
+export default function BalancesTable({periods, balances}: { periods?: PeriodType[], balances?: BalanceType[] }) {
   // get data and edit callback
   const {edit} = useBalances();
   // data not available
@@ -18,12 +18,12 @@ export default function BalancesTable ({periods, balances} : {periods?: PeriodTy
   // render
   return (
     <>
-      { balances.length > 0 && (
+      {balances.length > 0 && (
         <>
           <Button className='d-block d-md-none mx-auto mb-3' onClick={() => edit('')}>Add balance</Button>
-          <Button className='d-none d-md-block mb-3' onClick={() => edit('')}><BsPlusCircle /></Button>
-          <TableContent periods={[...periods].reverse()} edit={edit} />
-          <CarouselContent periods={[...periods].reverse()} edit={edit} />
+          <Button className='d-none d-md-block mb-3' onClick={() => edit('')}><BsPlusCircle/></Button>
+          <TableContent periods={[...periods].reverse()} edit={edit}/>
+          <CarouselContent periods={[...periods].reverse()} edit={edit}/>
           <p className='text-center text-muted'>{`${balances.length} balance entries in total`}</p>
         </>
       )}
@@ -41,79 +41,79 @@ export default function BalancesTable ({periods, balances} : {periods?: PeriodTy
   )
 }
 
-function TableContent ({periods, edit} : {periods: PeriodType[], edit: EditCallbackType<BalanceType>}) {
+function TableContent({periods, edit}: { periods: PeriodType[], edit: EditCallbackType<BalanceType> }) {
   return (
     <div className='d-none d-md-block mb-3' style={{overflowX: 'scroll'}}>
       <Table className='mb-0' striped hover bordered>
         <thead>
         <tr>
           <th scope='row'></th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <th scope='col' key={p.entry?._id} className='text-nowrap'>{moment(p.date.end).format('ll')}</th>
-          )) }
+          ))}
         </tr>
         </thead>
         <tbody>
         <tr>
           <th scope='row'>Bought</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end'>
-              <CurrencyCell amount={p.buy} />
+              <CurrencyCell amount={p.buy}/>
             </td>
-          )) }
+          ))}
         </tr>
         <tr>
           <th scope='row'>Sold</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end'>
-              <CurrencyCell amount={p.sell} />
+              <CurrencyCell amount={p.sell}/>
             </td>
-          )) }
+          ))}
         </tr>
         <tr>
           <th scope='row'>Sum</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end'>
-              <CurrencyCell amount={p.sum} />
+              <CurrencyCell amount={p.sum}/>
             </td>
-          )) }
+          ))}
         </tr>
         <tr>
           <th scope='row'>Invest</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end'>
-              <CurrencyCell amount={p.invest} />
+              <CurrencyCell amount={p.invest}/>
             </td>
-          )) }
+          ))}
         </tr>
         <tr>
           <th scope='row'>Amount</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end' role='button' onClick={() => edit(p.entry?._id)}>
               <OverlayTrigger placement="top" overlay={<Tooltip>{p.entry?.description || '-'}</Tooltip>}>
                 <strong>
-                  <CurrencyCell amount={p.amount} />
+                  <CurrencyCell amount={p.amount}/>
                 </strong>
               </OverlayTrigger>
             </td>
-          )) }
+          ))}
         </tr>
         <tr>
           <th scope='row'>Balance</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end'>
-              <CurrencyCell amount={p.amount - p.invest} colored /><br />
+              <CurrencyCell amount={p.amount - p.invest} colored/><br/>
               <span>{(p.balance * 100).toFixed(2)}&nbsp;%</span>
             </td>
-          )) }
+          ))}
         </tr>
         <tr>
           <th scope='row'>ARoI</th>
-          { periods.map(p => p.entry?._id && (
+          {periods.map(p => p.entry?._id && (
             <td key={p.entry?._id} className='text-nowrap text-end'>
-              <span>{(p.roi * 100).toFixed(2)}&nbsp;%</span><br />
+              <span>{(p.roi * 100).toFixed(2)}&nbsp;%</span><br/>
             </td>
-          )) }
+          ))}
         </tr>
         </tbody>
       </Table>
@@ -122,7 +122,7 @@ function TableContent ({periods, edit} : {periods: PeriodType[], edit: EditCallb
 }
 
 
-function CarouselContent({periods, edit} : {periods: PeriodType[], edit: EditCallbackType<BalanceType>}) {
+function CarouselContent({periods, edit}: { periods: PeriodType[], edit: EditCallbackType<BalanceType> }) {
   // states and data
   const [index, setIndex] = useState<number>();
   const pts = useMemo(() => {
@@ -134,7 +134,9 @@ function CarouselContent({periods, edit} : {periods: PeriodType[], edit: EditCal
   }, [pts])
   // render
   return (
-    <Carousel className='d-md-none d-block mt-3' activeIndex={index} onSelect={(i, e) => {e !== undefined && setIndex(i)}}>
+    <Carousel className='d-md-none d-block mt-3' activeIndex={index} onSelect={(i, e) => {
+      e !== undefined && setIndex(i)
+    }}>
       {
         pts.map(p => (
           <Carousel.Item key={p.entry?._id || 0}>
@@ -149,25 +151,25 @@ function CarouselContent({periods, edit} : {periods: PeriodType[], edit: EditCal
                 <tr>
                   <th scope='row'>Bought</th>
                   <td key={p.entry?._id} className='text-nowrap text-end'>
-                    <CurrencyCell amount={p.buy} />
+                    <CurrencyCell amount={p.buy}/>
                   </td>
                 </tr>
                 <tr>
                   <th scope='row'>Sold</th>
                   <td key={p.entry?._id} className='text-nowrap text-end'>
-                    <CurrencyCell amount={p.sell} />
+                    <CurrencyCell amount={p.sell}/>
                   </td>
                 </tr>
                 <tr>
                   <th scope='row'>Sum</th>
                   <td key={p.entry?._id} className='text-nowrap text-end'>
-                    <CurrencyCell amount={p.sum} />
+                    <CurrencyCell amount={p.sum}/>
                   </td>
                 </tr>
                 <tr>
                   <th scope='row'>Invest</th>
                   <td key={p.entry?._id} className='text-nowrap text-end'>
-                    <CurrencyCell amount={p.invest} />
+                    <CurrencyCell amount={p.invest}/>
                   </td>
                 </tr>
                 <tr>
@@ -175,7 +177,7 @@ function CarouselContent({periods, edit} : {periods: PeriodType[], edit: EditCal
                   <td key={p.entry?._id} className='text-nowrap text-end'>
                     <OverlayTrigger placement="top" overlay={<Tooltip>{p.entry?.description || ''}</Tooltip>}>
                       <strong>
-                        <CurrencyCell amount={p.amount} />
+                        <CurrencyCell amount={p.amount}/>
                       </strong>
                     </OverlayTrigger>
                   </td>
@@ -183,14 +185,14 @@ function CarouselContent({periods, edit} : {periods: PeriodType[], edit: EditCal
                 <tr>
                   <th scope='row'>Balance</th>
                   <td key={p.entry?._id} className='text-nowrap text-end'>
-                    <CurrencyCell amount={p.amount - p.invest} colored /><br />
+                    <CurrencyCell amount={p.amount - p.invest} colored/><br/>
                     <span>{(p.balance * 100).toFixed(2)}&nbsp;%</span>
                   </td>
                 </tr>
                 <tr>
                   <th scope='row'>ARoI</th>
                   <td key={p.entry?._id} className='text-nowrap text-end'>
-                    <span>{(p.roi * 100).toFixed(2)}&nbsp;%</span><br />
+                    <span>{(p.roi * 100).toFixed(2)}&nbsp;%</span><br/>
                   </td>
                 </tr>
                 </tbody>

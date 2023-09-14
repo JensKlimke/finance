@@ -10,7 +10,7 @@ import {BsPlusCircle} from "react-icons/bs";
 import {EditCallbackType} from "../../../hooks/entry";
 
 
-export default function OrdersTable ({periods, orders} : {periods?: PeriodType[], orders?: OrderType[]}) {
+export default function OrdersTable({periods, orders}: { periods?: PeriodType[], orders?: OrderType[] }) {
   // get data and edit callback
   const {edit} = useOrders();
   // data not available
@@ -18,12 +18,12 @@ export default function OrdersTable ({periods, orders} : {periods?: PeriodType[]
   // render
   return (
     <>
-      { orders.length > 0 && (
+      {orders.length > 0 && (
         <>
           <Button className='d-block d-md-none mx-auto mb-3' onClick={() => edit('')}>Add order</Button>
-          <Button className='d-none d-md-block mb-3' onClick={() => edit('')}><BsPlusCircle /></Button>
-          <TableContent periods={periods} edit={edit} />
-          <CardContent periods={periods} edit={edit} />
+          <Button className='d-none d-md-block mb-3' onClick={() => edit('')}><BsPlusCircle/></Button>
+          <TableContent periods={periods} edit={edit}/>
+          <CardContent periods={periods} edit={edit}/>
           <p className='text-center text-muted'>{`${orders.length} order entries in total`}</p>
         </>
       )}
@@ -41,7 +41,7 @@ export default function OrdersTable ({periods, orders} : {periods?: PeriodType[]
   )
 }
 
-function TableContent ({periods, edit} : {periods: PeriodType[], edit: EditCallbackType<OrderType>}) {
+function TableContent({periods, edit}: { periods: PeriodType[], edit: EditCallbackType<OrderType> }) {
   return (
     <div className='d-none d-md-block'>
       <Table striped bordered hover>
@@ -89,7 +89,7 @@ function TableContent ({periods, edit} : {periods: PeriodType[], edit: EditCallb
   )
 }
 
-function CardContent ({periods, edit} : {periods: PeriodType[], edit: EditCallbackType<OrderType>}) {
+function CardContent({periods, edit}: { periods: PeriodType[], edit: EditCallbackType<OrderType> }) {
   return (
     <div className='d-block d-md-none mb-3'>
       {

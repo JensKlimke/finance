@@ -23,7 +23,7 @@ export default function ContractsPage() {
 
 const ContractContent = () => {
   // get data
-  const {data : contractsData, edit, saveMany, eraseAll} = useContracts();
+  const {data: contractsData, edit, saveMany, eraseAll} = useContracts();
   // calculate statistics
   const statisticsData = useMemo(() => {
     return contractsData && statistics(contractsData);
@@ -35,7 +35,7 @@ const ContractContent = () => {
   return (
     <Container>
       <Row>
-        <Col lg={8} className='mb-4' >
+        <Col lg={8} className='mb-4'>
           <Card>
             <Card.Header>Contracts</Card.Header>
             <Card.Body>
@@ -51,7 +51,7 @@ const ContractContent = () => {
           </Card>
         </Col>
         <Col lg={4}>
-          { contractsData.length > 0 && (
+          {contractsData.length > 0 && (
             <>
               <Card className='mb-4'>
                 <Card.Header>Per Month</Card.Header>
@@ -89,7 +89,7 @@ const ContractContent = () => {
 }
 
 
-const statistics = (contracts : ContractType[]) => {
+const statistics = (contracts: ContractType[]) => {
   // get months array
   const months = Array.from(Array(12).keys());
   // calculate value

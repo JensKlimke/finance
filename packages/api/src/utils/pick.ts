@@ -4,8 +4,8 @@
  * @param {string[]} keys
  * @returns {Object}
  */
-export const pick = (object : any, keys : string[]) => {
-  const init : {[key: string] : string} = {};
+export const pick = (object: any, keys: string[]) => {
+  const init: { [key: string]: string } = {};
   return keys.reduce((obj, key) => {
     if (object && Object.prototype.hasOwnProperty.call(object, key)) {
       obj[key] = object[key];

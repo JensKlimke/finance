@@ -8,14 +8,14 @@ import FilterInput from "../../../components/forms/FilterInput";
 import {useItems} from "../planning/Planning.context";
 import CalendarInput from "../../../components/forms/CalendarInput";
 
-export default function ExpensesForm ({entry, handleSubmit, update} : {
-  entry : ExpenseType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<ExpenseType>
+export default function ExpensesForm({entry, handleSubmit, update}: {
+  entry: ExpenseType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<ExpenseType>
 }) {
   // get data
-  const {data : expensesData} = useExpenses();
-  const {data : planningData} = useItems();
+  const {data: expensesData} = useExpenses();
+  const {data: planningData} = useItems();
   // render
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>
@@ -73,28 +73,28 @@ export default function ExpensesForm ({entry, handleSubmit, update} : {
         <Col>
           <Form.Group className="mb-3">
             <Form.Label>Category</Form.Label>
-            <br />
+            <br/>
             <ButtonGroup className='ms-3'>
               <Button
                 onClick={() => update('category', 'material')}
                 variant={entry.category === 'material' ? 'outline-primary' : 'primary'}
                 title='Material'
               >
-                { categoryIcons.material }
+                {categoryIcons.material}
               </Button>
               <Button
                 onClick={() => update('category', 'service')}
                 variant={entry.category === 'service' ? 'outline-primary' : 'primary'}
                 title='Service'
               >
-                { categoryIcons.service }
+                {categoryIcons.service}
               </Button>
               <Button
                 onClick={() => update('category', 'tools')}
                 variant={entry.category === 'tools' ? 'outline-primary' : 'primary'}
                 title='Tools'
               >
-                { categoryIcons.tools }
+                {categoryIcons.tools}
               </Button>
             </ButtonGroup>
           </Form.Group>
@@ -102,21 +102,21 @@ export default function ExpensesForm ({entry, handleSubmit, update} : {
         <Col>
           <Form.Group className="mb-3">
             <Form.Label>Invoice</Form.Label>
-            <br />
+            <br/>
             <ButtonGroup className='ms-3'>
               <Button
                 onClick={() => update('invoice', 'yes')}
                 variant={entry.invoice === 'yes' ? 'outline-primary' : 'primary'}
                 title='Yes'
               >
-                { invoiceIcons['yes'] }
+                {invoiceIcons['yes']}
               </Button>
               <Button
                 onClick={() => update('invoice', 'no')}
                 variant={entry.invoice === 'no' ? 'outline-primary' : 'primary'}
                 title='No'
               >
-                { invoiceIcons['no'] }
+                {invoiceIcons['no']}
               </Button>
             </ButtonGroup>
           </Form.Group>
@@ -124,28 +124,28 @@ export default function ExpensesForm ({entry, handleSubmit, update} : {
         <Col>
           <Form.Group className="mb-3">
             <Form.Label>Payer</Form.Label>
-            <br />
+            <br/>
             <ButtonGroup className='ms-3'>
               <Button
                 onClick={() => update('payer', 'Cathrin')}
                 variant={entry.payer === 'Cathrin' ? 'outline-primary' : 'primary'}
                 title='Cathrin'
               >
-                { payerIcons['Cathrin'] }
+                {payerIcons['Cathrin']}
               </Button>
               <Button
                 onClick={() => update('payer', 'Jens')}
                 variant={entry.payer === 'Jens' ? 'outline-primary' : 'primary'}
                 title='Jens'
               >
-                { payerIcons['Jens'] }
+                {payerIcons['Jens']}
               </Button>
               <Button
                 onClick={() => update('payer', 'joint')}
                 variant={entry.payer === 'joint' ? 'outline-primary' : 'primary'}
                 title='Joint'
               >
-                { payerIcons['joint'] }
+                {payerIcons['joint']}
               </Button>
             </ButtonGroup>
           </Form.Group>

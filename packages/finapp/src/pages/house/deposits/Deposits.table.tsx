@@ -78,7 +78,7 @@ export const DepositSort: DataSortConfig = {
     field: 2,
     asc: false
   },
-  filterText: (a : DepositType) => {
+  filterText: (a: DepositType) => {
     return `${a.payer} ${a.amount} ${moment(a.date).format('YYYY-MM-DD')} ${a.comment}`;
   }
 }

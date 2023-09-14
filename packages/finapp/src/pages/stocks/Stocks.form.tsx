@@ -4,10 +4,10 @@ import {StockType} from "./Stocks.context";
 import {UpdateCallbackType} from "../../hooks/entry";
 import AmountInput from "../../components/forms/AmountInput";
 
-export default function StocksForm ({entry, handleSubmit, update} : {
-  entry : StockType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<StockType>
+export default function StocksForm({entry, handleSubmit, update}: {
+  entry: StockType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<StockType>
 }) {
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>

@@ -18,9 +18,9 @@ export const MonthsTable = ({data}: { data: any }) => {
           <tr key={i}>
             <th scope='row'>{toMonthName(i)}</th>
             <td className='text-end'>
-              { (i === data.maxMonth && m > 0.0) ?
-                <u><CurrencyCell amount={m} /></u> :
-                <CurrencyCell amount={m} />
+              {(i === data.maxMonth && m > 0.0) ?
+                <u><CurrencyCell amount={m}/></u> :
+                <CurrencyCell amount={m}/>
               }
             </td>
           </tr>

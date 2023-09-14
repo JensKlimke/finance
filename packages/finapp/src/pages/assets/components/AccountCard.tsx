@@ -13,7 +13,7 @@ type Props = {
   className?: string
 }
 
-export default function AccountCard ({account, setAccount, accountData, className} : Props) {
+export default function AccountCard({account, setAccount, accountData, className}: Props) {
   // get edit
   const {edit} = useAccounts();
   // render
@@ -37,21 +37,21 @@ export default function AccountCard ({account, setAccount, accountData, classNam
         {account && (
           <ButtonGroup className='mt-3 d-flex'>
             <Button onClick={() => edit(account)}>
-              <BsGear />
+              <BsGear/>
               <span className='ms-2 d-lg-none d-xl-inline'>Edit Account</span>
             </Button>
             <Button onClick={() => edit('')}>
-              <BsPlusCircle />
+              <BsPlusCircle/>
               <span className='ms-2 d-lg-none d-xl-inline'>Add Account</span>
             </Button>
           </ButtonGroup>
         )}
         {(!account && accountData) && (
           <>
-            { accountData.length === 0 && <p className='text-center text-muted'>No accounts.</p> }
+            {accountData.length === 0 && <p className='text-center text-muted'>No accounts.</p>}
             <ButtonGroup className='d-flex mt-3'>
               <Button onClick={() => edit('')}>
-                <BsPlusCircle />
+                <BsPlusCircle/>
                 <span className='ms-2'>Add Account</span>
               </Button>
             </ButtonGroup>

@@ -1,7 +1,7 @@
 import Joi from 'joi'
 import {isValidUUID, validation} from "../utils/validation";
 
-export const accountReference ={
+export const accountReference = {
   account: Joi.custom(isValidUUID).required(),
 };
 

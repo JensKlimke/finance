@@ -15,25 +15,25 @@ export const MetricsTable = ({data}: { data: any }) => {
       <tr>
         <td style={{'width': '40%'}}>Max. month</td>
         <td style={{'width': '60%'}} className='text-end'>
-          <CurrencyCell amount={data.perMonth[data.maxMonth]} />
+          <CurrencyCell amount={data.perMonth[data.maxMonth]}/>
         </td>
       </tr>
       <tr>
         <td>Average</td>
         <td className='text-end'>
-          <CurrencyCell amount={data.monthlyAverage} />
+          <CurrencyCell amount={data.monthlyAverage}/>
         </td>
       </tr>
       <tr>
         <td>Annual</td>
         <td className='text-end'>
-          <CurrencyCell amount={sum} />
+          <CurrencyCell amount={sum}/>
         </td>
       </tr>
       <tr>
         <td>Shared</td>
         <td className='text-end'>
-          <CurrencyCell amount={data.sharedAmount} />
+          <CurrencyCell amount={data.sharedAmount}/>
         </td>
       </tr>
       </tbody>

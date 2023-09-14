@@ -31,7 +31,7 @@ export const useContracts = () => useContext(ContractContext);
 const ContractProvider = GenericEntryProvider<ContractType>('contracts',
   cleanContractCopy,
   defaultContract,
-  (context : EntryContextType<ContractType>, children : React.ReactNode) => (
+  (context: EntryContextType<ContractType>, children: React.ReactNode) => (
     <ContractContext.Provider value={context}>
       {children}
     </ContractContext.Provider>

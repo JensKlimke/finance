@@ -31,8 +31,7 @@ const sessionPromise = () =>
   });
 
 
-
-export default function AuthProvider({ children } : {children: React.ReactNode}) {
+export default function AuthProvider({children}: { children: React.ReactNode }) {
   // states
   const [pending, setPending] = useState<boolean>(true);
   const [session, setSession] = useState<SessionType>();
@@ -48,7 +47,7 @@ export default function AuthProvider({ children } : {children: React.ReactNode})
     window.location.href = url.toString();
   }, []);
   // generate login url
-  const createFakeSession = useCallback((type : string) => {
+  const createFakeSession = useCallback((type: string) => {
     // create url
     const url = new URL(`${API_URL}/v1/auth/fake`);
     url.searchParams.set('type', type);
@@ -86,7 +85,7 @@ export default function AuthProvider({ children } : {children: React.ReactNode})
     renew();
   }, [renew]);
   // context object
-  const context : AuthContextType = {
+  const context: AuthContextType = {
     session,
     pending,
     login,

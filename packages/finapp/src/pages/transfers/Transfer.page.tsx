@@ -11,11 +11,11 @@ import DeleteButton from "../../components/forms/DeleteButton";
 import EntryFormModal from "../../components/forms/EntryFormModal";
 import TransferForm from "./Transfer.form";
 
-export default function TransferPage () {
+export default function TransferPage() {
   // render
   return (
     <TransferProvider>
-      <TransferContent />
+      <TransferContent/>
     </TransferProvider>
   );
 }
@@ -50,7 +50,7 @@ const TransferContent = () => {
             <Card className='mb-4'>
               <Card.Header>Balance</Card.Header>
               <Card.Body>
-                <BalanceTable />
+                <BalanceTable/>
               </Card.Body>
             </Card>
           )}
@@ -83,7 +83,7 @@ const BalanceTable = () => {
   const amounts = useMemo(() => {
     if (!data) return undefined;
     return {
-      in:  data.reduce((s, c) => s + (c.amount > 0.0 ? c.amount : 0.0), 0.0),
+      in: data.reduce((s, c) => s + (c.amount > 0.0 ? c.amount : 0.0), 0.0),
       out: data.reduce((s, c) => s + (c.amount < 0.0 ? c.amount : 0.0), 0.0),
     }
   }, [data]);
@@ -96,13 +96,13 @@ const BalanceTable = () => {
       <tbody>
       <tr>
         <td className='text-end'>
-          <CurrencyCell colored amount={amounts.in} />&nbsp;&nbsp;
+          <CurrencyCell colored amount={amounts.in}/>&nbsp;&nbsp;
           <BsArrowRight className='text-success'/>
         </td>
       </tr>
       <tr>
         <td className='text-end'>
-          <CurrencyCell colored amount={amounts.out} />&nbsp;&nbsp;
+          <CurrencyCell colored amount={amounts.out}/>&nbsp;&nbsp;
           <BsArrowLeft className='text-danger'/>
         </td>
       </tr>
@@ -110,8 +110,8 @@ const BalanceTable = () => {
       <tfoot>
       <tr>
         <td className='text-end' style={{'borderTop': '2px solid black'}}>
-          <CurrencyCell colored amount={amounts.in + amounts.out} />&nbsp;&nbsp;
-          <BsCash />
+          <CurrencyCell colored amount={amounts.in + amounts.out}/>&nbsp;&nbsp;
+          <BsCash/>
         </td>
       </tr>
       </tfoot>

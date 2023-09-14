@@ -4,10 +4,10 @@ import {UpdateCallbackType} from "../../hooks/entry";
 import AmountInput from "../../components/forms/AmountInput";
 import {TransferType} from "./Transfer.context";
 
-export default function TransferForm ({entry, handleSubmit, update} : {
-  entry : TransferType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<TransferType>
+export default function TransferForm({entry, handleSubmit, update}: {
+  entry: TransferType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<TransferType>
 }) {
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>
@@ -16,7 +16,7 @@ export default function TransferForm ({entry, handleSubmit, update} : {
         <Form.Control
           autoFocus
           value={entry.description}
-          onChange={(e ) => update('description', e.target.value)}
+          onChange={(e) => update('description', e.target.value)}
           type="text"
           placeholder="My Transfer"
         />
@@ -25,7 +25,7 @@ export default function TransferForm ({entry, handleSubmit, update} : {
         <Form.Label>Amount</Form.Label>
         <AmountInput
           value={entry.amount}
-          onChange={(v : number) => update('amount', v)}
+          onChange={(v: number) => update('amount', v)}
         />
       </Form.Group>
     </Form>

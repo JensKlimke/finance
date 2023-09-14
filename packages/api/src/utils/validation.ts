@@ -11,26 +11,26 @@ export function isValidUUID(uuid: string): string {
 }
 
 export interface RequestValidator {
-  body ?: any,
-  params ?: any,
-  query ?: any,
+  body?: any,
+  params?: any,
+  query?: any,
 }
 
 export interface DefaultValidator {
-  addEntry:  RequestValidator,
-  addEntries:  RequestValidator
-  getEntries:  RequestValidator,
-  getEntry:  RequestValidator
-  updateEntry:  RequestValidator
-  deleteEntry:  RequestValidator
-  deleteEntries:  RequestValidator
+  addEntry: RequestValidator,
+  addEntries: RequestValidator
+  getEntries: RequestValidator,
+  getEntry: RequestValidator
+  updateEntry: RequestValidator
+  deleteEntry: RequestValidator
+  deleteEntries: RequestValidator
 }
 
 const entryId = {
   id: Joi.string().custom(isValidUUID),
 };
 
-export function validation (body: Joi.ObjectSchema, queryDef ?: any, paramsDef ?: any) : DefaultValidator {
+export function validation(body: Joi.ObjectSchema, queryDef ?: any, paramsDef ?: any): DefaultValidator {
   // get elements
   const q = queryDef || {};
   const p = paramsDef || {};
@@ -41,26 +41,26 @@ export function validation (body: Joi.ObjectSchema, queryDef ?: any, paramsDef ?
   const query = Joi.object().keys(q);
   // generate structure
   return {
-    addEntry:  {
+    addEntry: {
       body,
       query,
     },
-    addEntries:  {
+    addEntries: {
       body: Joi.array().items(body),
       query
     },
-    getEntries:  {
+    getEntries: {
       query,
       params
     },
-    getEntry:  {
+    getEntry: {
       params: paramsWithId,
     },
-    updateEntry:  {
+    updateEntry: {
       params: paramsWithId,
       body,
     },
-    deleteEntry:  {
+    deleteEntry: {
       params: paramsWithId,
     },
     deleteEntries: {

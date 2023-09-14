@@ -2,7 +2,7 @@ import {useCallback, useState} from "react";
 import {Button} from "react-bootstrap";
 import {BsBoxArrowDown} from "react-icons/bs";
 
-export default function ExportButton({object} : {object: any}) {
+export default function ExportButton({object}: { object: any }) {
   // states
   const [copied, setCopied] = useState(false);
   // callback, when button is clicked. Changes when object changes
@@ -15,6 +15,6 @@ export default function ExportButton({object} : {object: any}) {
       .catch(e => console.error(e));
   }, [object]);
   // return the button
-  return <Button onClick={handleExport}><BsBoxArrowDown /> {copied ? 'copied' : 'Export'}</Button>
+  return <Button onClick={handleExport}><BsBoxArrowDown/> {copied ? 'copied' : 'Export'}</Button>
 
 }

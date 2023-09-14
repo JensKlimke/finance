@@ -6,10 +6,10 @@ import {DepositType} from "./Deposits.context";
 import {payerIcons} from "../expenses/Expenses.table";
 import CalendarInput from "../../../components/forms/CalendarInput";
 
-export default function DepositsForm ({entry, handleSubmit, update} : {
-  entry : DepositType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<DepositType>
+export default function DepositsForm({entry, handleSubmit, update}: {
+  entry: DepositType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<DepositType>
 }) {
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>
@@ -32,21 +32,21 @@ export default function DepositsForm ({entry, handleSubmit, update} : {
       </Form.Group>
       <Form.Group className="mb-3">
         <Form.Label>Payer</Form.Label>
-        <br />
+        <br/>
         <ButtonGroup className='ms-3'>
           <Button
             onClick={() => update('payer', 'Cathrin')}
             variant={entry.payer === 'Cathrin' ? 'outline-primary' : 'primary'}
             title='Cathrin'
           >
-            { payerIcons['Cathrin'] }
+            {payerIcons['Cathrin']}
           </Button>
           <Button
             onClick={() => update('payer', 'Jens')}
             variant={entry.payer === 'Jens' ? 'outline-primary' : 'primary'}
             title='Jens'
           >
-            { payerIcons['Jens'] }
+            {payerIcons['Jens']}
           </Button>
         </ButtonGroup>
       </Form.Group>

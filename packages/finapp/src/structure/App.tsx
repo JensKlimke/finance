@@ -45,24 +45,24 @@ export default function App({children}: { children: React.ReactNode }) {
           <Button
             className='toggle-button'
             variant='outline-secondary'
-            onClick={ () => setTopNavOpen(!topNavOpen) }
+            onClick={() => setTopNavOpen(!topNavOpen)}
           >
-            <BsList />
+            <BsList/>
           </Button>
         </div>
       </div>
       <div className={`TopNav d-${topNavOpen ? 'block' : 'none'}`}>
-        <hr />
-        <Nav />
+        <hr/>
+        <Nav/>
       </div>
       <div className='Sidebar'>
         <div className='Logo'>
           <h1>
-            <BsPiggyBank />
+            <BsPiggyBank/>
           </h1>
         </div>
         <div className='Logo small'>
-          <h3><BsPiggyBank /></h3>
+          <h3><BsPiggyBank/></h3>
         </div>
         <Nav/>
       </div>

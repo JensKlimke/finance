@@ -6,15 +6,15 @@ import {UpdateCallbackType} from "../../hooks/entry";
 
 // create options
 const options = [
-  { value: '', text: '--- Select Type ---', disabled: true},
-  { value: 'user', text: 'User' },
-  { value: 'admin', text: 'Admin' },
+  {value: '', text: '--- Select Type ---', disabled: true},
+  {value: 'user', text: 'User'},
+  {value: 'admin', text: 'Admin'},
 ];
 
-export default function UsersForm ({entry, handleSubmit, update} : {
-  entry : UserType,
-  handleSubmit : (e: FormEvent<HTMLFormElement>) => void,
-  update : UpdateCallbackType<UserType>
+export default function UsersForm({entry, handleSubmit, update}: {
+  entry: UserType,
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => void,
+  update: UpdateCallbackType<UserType>
 }) {
   return (
     <Form onSubmit={(e) => handleSubmit(e)} id='entryForm' method='post'>

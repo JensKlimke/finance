@@ -1,11 +1,11 @@
 import {useCallback, useEffect, useState} from "react";
 
 
-export default function useWebsocket(url : string) {
+export default function useWebsocket(url: string) {
   // states
   const [socket, setSocket] = useState<WebSocket>();
   // callbacks
-  const disconnect = useCallback((s : WebSocket) => {
+  const disconnect = useCallback((s: WebSocket) => {
     s?.close()
     setSocket(undefined);
   }, []);

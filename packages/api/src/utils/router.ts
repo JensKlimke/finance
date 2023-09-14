@@ -3,7 +3,7 @@ import {auth} from "../middlewares/auth";
 import {validate} from "../middlewares/validate";
 import {DefaultValidator} from "./validation";
 
-export const defaultRoutes = (router : express.Router, validator : DefaultValidator, controller : any) => {
+export const defaultRoutes = (router: express.Router, validator: DefaultValidator, controller: any) => {
   // base route
   router.route('/')
     .get(auth(['getUserItems']), validate(validator.getEntries), controller.getEntries)

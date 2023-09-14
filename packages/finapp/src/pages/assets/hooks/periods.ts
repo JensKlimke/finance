@@ -6,30 +6,30 @@ import {calcPeriods} from "./calcPeriods";
 
 export type PeriodType = {
   date: {
-    start : Date | undefined,
-    end : Date | undefined
+    start: Date | undefined,
+    end: Date | undefined
   },
   orders: OrderType[],
-  sum : number,
-  invest : number,
+  sum: number,
+  invest: number,
   sell: number,
   buy: number,
   amount: number,
   balance: number,
   roi: number,
-  previous : PeriodType | undefined,
-  entry : BalanceType | undefined,
+  previous: PeriodType | undefined,
+  entry: BalanceType | undefined,
 }
 
 export function usePeriods() {
   const [periods, setPeriods] = useState<PeriodType[]>();
   const [account, setAccountLocal] = useState<string>();
   // get data
-  const {data : accounts} = useAccounts();
-  const {data : balances, setReference : setBalanceRef} = useBalances();
-  const {data : orders, setReference : setOrderRef} = useOrders();
+  const {data: accounts} = useAccounts();
+  const {data: balances, setReference: setBalanceRef} = useBalances();
+  const {data: orders, setReference: setOrderRef} = useOrders();
   // callbacks
-  const setAccount = useCallback((account : string | undefined) => {
+  const setAccount = useCallback((account: string | undefined) => {
     setAccountLocal(account);
   }, []);
   // effects

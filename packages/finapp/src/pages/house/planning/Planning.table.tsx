@@ -25,11 +25,11 @@ export const ItemsCols: DataComponentConfigType = {
       label: 'Units',
       content: (row: ItemType) => (row.units > 0 && row.unitPrice > 0) ? (
         <span>
-          <code>{row.units}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.unitPrice} /><br />
-          =&nbsp;<CurrencyCell fracDigits={0} amount={row.units * row.unitPrice} />
+          <code>{row.units}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.unitPrice}/><br/>
+          =&nbsp;<CurrencyCell fracDigits={0} amount={row.units * row.unitPrice}/>
         </span>
       ) : (
-        <CurrencyCell fracDigits={0} amount={row.units * row.unitPrice} />
+        <CurrencyCell fracDigits={0} amount={row.units * row.unitPrice}/>
       ),
       className: 'text-end',
       width: 15
@@ -38,18 +38,19 @@ export const ItemsCols: DataComponentConfigType = {
       label: 'Area',
       content: (row: ItemType) => (row.area > 0 && row.areaPrice > 0) ? (
         <span>
-          <code>{row.area}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.areaPrice} /><br />
-          =&nbsp;<CurrencyCell fracDigits={0} amount={row.area * row.areaPrice} />
+          <code>{row.area}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.areaPrice}/><br/>
+          =&nbsp;<CurrencyCell fracDigits={0} amount={row.area * row.areaPrice}/>
         </span>
       ) : (
-        <CurrencyCell fracDigits={0} amount={row.area * row.areaPrice} />
+        <CurrencyCell fracDigits={0} amount={row.area * row.areaPrice}/>
       ),
       className: 'text-end',
       width: 15
     },
     {
       label: 'Used Sum',
-      content: (row: ItemType) => <UsedAmount sum={row.units * row.unitPrice + row.area * row.areaPrice} name={row.description}/>,
+      content: (row: ItemType) => <UsedAmount sum={row.units * row.unitPrice + row.area * row.areaPrice}
+                                              name={row.description}/>,
       className: 'text-end',
       width: 15
     },
@@ -74,11 +75,11 @@ export const ItemsRow: DataComponentConfigType = {
       label: 'Units',
       content: (row: ItemType) => (row.units > 0 && row.unitPrice > 0) ? (
         <span>
-          <code>{row.units}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.unitPrice} /><br />
-          =&nbsp;<CurrencyCell fracDigits={0} amount={row.units * row.unitPrice} />
+          <code>{row.units}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.unitPrice}/><br/>
+          =&nbsp;<CurrencyCell fracDigits={0} amount={row.units * row.unitPrice}/>
         </span>
       ) : (
-        <CurrencyCell fracDigits={0} amount={row.units * row.unitPrice} />
+        <CurrencyCell fracDigits={0} amount={row.units * row.unitPrice}/>
       ),
       className: 'text-end',
     },
@@ -86,17 +87,18 @@ export const ItemsRow: DataComponentConfigType = {
       label: 'Area',
       content: (row: ItemType) => (row.area > 0 && row.areaPrice > 0) ? (
         <span>
-          <code>{row.area}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.areaPrice} /><br />
-          =&nbsp;<CurrencyCell fracDigits={0} amount={row.area * row.areaPrice} />
+          <code>{row.area}</code>&nbsp;&#10005;&nbsp;<CurrencyCell fracDigits={0} amount={row.areaPrice}/><br/>
+          =&nbsp;<CurrencyCell fracDigits={0} amount={row.area * row.areaPrice}/>
         </span>
       ) : (
-        <CurrencyCell fracDigits={0} amount={row.area * row.areaPrice} />
+        <CurrencyCell fracDigits={0} amount={row.area * row.areaPrice}/>
       ),
       className: 'text-end',
     },
     {
       label: 'Used Sum',
-      content: (row: ItemType) => <UsedAmount sum={row.units * row.unitPrice + row.area * row.areaPrice} name={row.description}/>,
+      content: (row: ItemType) => <UsedAmount sum={row.units * row.unitPrice + row.area * row.areaPrice}
+                                              name={row.description}/>,
       className: 'text-end',
     },
   ]
@@ -117,13 +119,13 @@ export const ItemsSort: DataSortConfig = {
     field: 0,
     asc: true
   },
-  filterText: (a : ItemType) => {
+  filterText: (a: ItemType) => {
     return `${a.description} ${a.group}`;
   }
 }
 
-function UsedAmount({sum, name} : {sum: number, name: string}) {
-  const {data : expenses} = useExpenses();
+function UsedAmount({sum, name}: { sum: number, name: string }) {
+  const {data: expenses} = useExpenses();
   const used = useMemo(() => {
     // zero while loading
     if (!expenses) return 0.0;
@@ -134,10 +136,10 @@ function UsedAmount({sum, name} : {sum: number, name: string}) {
   }, [expenses, name]);
   return (
     <span>
-      <CurrencyCell fracDigits={0} amount={sum} /><br />
-      <CurrencyCell fracDigits={0} amount={used} />
+      <CurrencyCell fracDigits={0} amount={sum}/><br/>
+      <CurrencyCell fracDigits={0} amount={used}/>
       <hr className='m-0'/>
-      <CurrencyCell fracDigits={0} colored amount={sum - used} />
+      <CurrencyCell fracDigits={0} colored amount={sum - used}/>
     </span>
   );
 }

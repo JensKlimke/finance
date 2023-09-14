@@ -1,7 +1,7 @@
 import {Card, Col, Container, Row} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
 
-export default function Dashboard () {
+export default function Dashboard() {
   return (
     <Container>
       <Row className='justify-content-center'>

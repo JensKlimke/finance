@@ -27,43 +27,43 @@ export default function Auth({children}: { children: React.ReactNode }) {
             <Card.Header>Unauthorized</Card.Header>
             <Card.Body className='text-center'>
               <ButtonGroup vertical>
-              <p>You are not authorized to access this app. Please verify your identity with GitHub.com.</p>
-              <Button onClick={login}>
-                <BsGithub />&nbsp;
-                Log in with GitHub
-              </Button>
-              {
-                ENV === 'dev' && (
-                  <>
-                    <Button onClick={() => createFakeSession('admin')}>
-                      <BsPatchCheckFill />&nbsp;
-                      Log in as admin
-                    </Button>
-                    <Button onClick={() => createFakeSession('user')}>
-                      <BsPerson />&nbsp;
-                      Log in as user
-                    </Button>
-                  </>
-                )
-              }
+                <p>You are not authorized to access this app. Please verify your identity with GitHub.com.</p>
+                <Button onClick={login}>
+                  <BsGithub/>&nbsp;
+                  Log in with GitHub
+                </Button>
+                {
+                  ENV === 'dev' && (
+                    <>
+                      <Button onClick={() => createFakeSession('admin')}>
+                        <BsPatchCheckFill/>&nbsp;
+                        Log in as admin
+                      </Button>
+                      <Button onClick={() => createFakeSession('user')}>
+                        <BsPerson/>&nbsp;
+                        Log in as user
+                      </Button>
+                    </>
+                  )
+                }
               </ButtonGroup>
             </Card.Body>
           </Card>
         </Col>
       </Row>
-      { data &&
-        <Row>
-          <Col className='text-center mt-4'>
-            <span className='text-muted'>API {data}</span>
-          </Col>
-        </Row>
+      {data &&
+          <Row>
+              <Col className='text-center mt-4'>
+                  <span className='text-muted'>API {data}</span>
+              </Col>
+          </Row>
       }
     </LoadingScreen>
   );
 }
 
 
-export const withAuth = (element : React.ReactNode) => {
+export const withAuth = (element: React.ReactNode) => {
   return (
     <Auth>
       <App>

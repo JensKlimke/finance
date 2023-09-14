@@ -1,7 +1,7 @@
 import {Col, Container, Row} from "react-bootstrap";
 import React from "react";
 
-export default function NotFound () {
+export default function NotFound() {
   return (
     <Container>
       <Row className='align-content-center d-block d-lg-none'>

@@ -7,10 +7,10 @@ import CurrencyCell from "../../components/display/CurrencyCell";
 import {DataComponentConfigType, DataSortConfig} from "../../hooks/entry";
 import React from "react";
 
-const annual = (contract : ContractType) =>
+const annual = (contract: ContractType) =>
   contract.months.reduce((sum, v) => (sum + (v ? contract.amount : 0.0)), 0.0);
 
-const nextDue = (contract : ContractType) => {
+const nextDue = (contract: ContractType) => {
   // get next month
   const month = new Date().getMonth();
   const year = new Date().getFullYear();
@@ -142,7 +142,7 @@ export const ContractSort: DataSortConfig = {
         callback: (a: ContractType, b: ContractType) => ((a.shared ? 1.0 : 0.0) - (b.shared ? 1.0 : 0.0)),
       },
     ],
-  filterText: (a : ContractType) => {
+  filterText: (a: ContractType) => {
     const next = ` ${moment(nextDue(a)).format('MMMM YYYY')}`;
     return `${a.name} ${a.creditor} ${a.amount} ${annual(a)}${next}`;
   }
