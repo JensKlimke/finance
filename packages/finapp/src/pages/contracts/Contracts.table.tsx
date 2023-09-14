@@ -137,6 +137,10 @@ export const ContractSort: DataSortConfig = {
         label: 'Due Date',
         callback: dateSort,
       },
+      {
+        label: 'Shared',
+        callback: (a: ContractType, b: ContractType) => ((a.shared ? 1.0 : 0.0) - (b.shared ? 1.0 : 0.0)),
+      },
     ],
   filterText: (a : ContractType) => {
     const next = ` ${moment(nextDue(a)).format('MMMM YYYY')}`;
